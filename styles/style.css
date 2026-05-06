@@ -1,0 +1,20 @@
+/*==================================================
+  STYLE.CSS
+
+  Shared global UI styles and reusable elements.
+
+  Responsibilities:
+  - Header styling
+  - Footer styling
+  - Icon styling
+  - Links and navigation
+  - Small reusable UI elements
+  - Utility and helper classes
+
+  This file contains small global styles that
+  are shared across multiple screens and layouts.
+==================================================*/
+
+.max-content {
+    padding: 0 max(calc(50% - 720px), clamp(1rem, 4vw, 4rem));
+}

@@ -1,0 +1,58 @@
+/*==================================================
+  VARIABLES.CSS
+
+  Global design tokens and reusable values.
+
+  Responsibilities:
+  - Colors
+  - Typography
+  - Spacing
+  - Shadows
+  - Border radius
+  - Animation timings
+  - Global sizing variables
+==================================================*/
+
+:root {
+    /* ===== COLORS ===== */
+    --color-bg: #0f172a;
+    --color-surface: #1e293b;
+
+    --color-primary: #38bdf8;
+    --color-secondary: #f43f5e;
+
+    --color-text: #f8fafc;
+    --color-border: #334155;
+
+    --color-hover-primary: #0ea5e9;
+    --color-hover-secondary: #e11d48;
+
+    /* ===== TYPOGRAPHY ===== */
+    --font-family: Arial, Helvetica, sans-serif;
+
+    --font-size-title: clamp(2rem, 8vw, 3rem);
+    --font-size-subtitle: clamp(1rem, 4vw, 1.15rem);
+    --font-size-button: 1rem;
+
+    /* ===== SPACING ===== */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+
+    /* ===== BORDER ===== */
+    --border-radius: 1rem;
+    --border-size: 2px;
+
+    /* ===== SHADOW ===== */
+    --shadow-soft: 0 0 20px rgba(0, 0, 0, 0.25);
+    --shadow-glow: 0 0 15px rgba(56, 189, 248, 0.35);
+
+    /* ===== TRANSITIONS ===== */
+    --transition-fast: 125ms ease-in-out;
+    --transition-normal: 250ms ease-in-out;
+
+    /* ===== BUTTON SIZE ===== */
+    --button-width: 240px;
+    --button-height: 60px;
+}

@@ -1,0 +1,99 @@
+/*==================================================
+  LANDING.CSS
+
+  Styles for the landing page and menu screens.
+
+  Responsibilities:
+  - Landing page layout
+  - Menu card styling
+  - Game mode buttons
+  - Match type selection
+  - Intro screen visuals
+==================================================*/
+
+.landing-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 100vh;
+
+    padding: var(--spacing-md);
+}
+
+.landing-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+
+    width: min(100%, 500px);
+
+    padding: var(--spacing-lg) var(--spacing-md);
+
+    background-color: var(--color-surface);
+
+    border: var(--border-size) solid var(--color-border);
+    border-radius: var(--border-radius);
+
+    box-shadow: var(--shadow-soft);
+}
+
+.game-title {
+    font-size: var(--font-size-title);
+    font-weight: 700;
+    text-align: center;
+
+    color: var(--color-primary);
+}
+
+.game-subtitle {
+    font-size: var(--font-size-subtitle);
+    text-align: center;
+
+    opacity: 0.8;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+
+    width: 100%;
+}
+
+.game-button {
+    width: 100%;
+    height: var(--button-height);
+
+    border-radius: var(--border-radius);
+
+    font-size: var(--font-size-button);
+    font-weight: 600;
+
+    color: var(--color-text);
+}
+
+.classic-btn {
+    background-color: var(--color-primary);
+}
+
+.classic-btn:hover {
+    background-color: var(--color-hover-primary);
+
+    transform: translateY(-2px);
+
+    box-shadow: var(--shadow-glow);
+}
+
+.ultimate-btn {
+    background-color: var(--color-secondary);
+}
+
+.ultimate-btn:hover {
+    background-color: var(--color-hover-secondary);
+
+    transform: translateY(-2px);
+
+    box-shadow: var(--shadow-glow);
+}
