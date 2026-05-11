@@ -11,3 +11,205 @@
   - Winner and draw visuals
   - Ingame UI elements
 ==================================================*/
+
+.game-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-md);
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.game-board {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  width: clamp(200px, 80vw, 420px);
+}
+
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1 / 1;
+  background-color: var(--color-surface);
+  border: var(--border-size) solid var(--color-border);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition:
+    transform var(--transition-fast),
+    background-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.cell img {
+  width: 80%;
+  height: 80%;
+}
+
+.cell:hover {
+  transform: scale(1.03);
+  background-color: rgba(255, 255, 255, 0.05);
+  box-shadow: var(--shadow-glow);
+}
+
+.game-status {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  font-size: 1.25rem;
+  font-weight: 600;
+
+  color: var(--color-text);
+}
+
+.win-line {
+  position: absolute;
+  background-color: white;
+  border-radius: 999px;
+}
+
+/* HORIZONTAL */
+.win-line.win-row-top {
+  top: 15%;
+  left: 10%;
+  width: 80%;
+  height: 6px;
+}
+
+.win-line.win-row-middle {
+  top: 50%;
+  left: 10%;
+  width: 80%;
+  height: 6px;
+}
+
+.win-line.win-row-bottom {
+  top: 83.33%;
+  left: 10%;
+  width: 80%;
+  height: 6px;
+}
+
+.win-line.win-row-top,
+.win-line.win-row-middle,
+.win-line.win-row-bottom {
+  animation:
+    draw-line-horizontal 1s ease forwards;
+}
+
+/* VERTICAL */
+.win-line.win-col-left {
+  top: 10%;
+  left: 15%;
+  width: 6px;
+  height: 80%;
+}
+
+.win-line.win-col-middle {
+  top: 10%;
+  left: 50%;
+  width: 6px;
+  height: 80%;
+}
+
+.win-line.win-col-right {
+  top: 10%;
+  left: 83.33%;
+  width: 6px;
+  height: 80%;
+}
+
+.win-line.win-col-left,
+.win-line.win-col-middle,
+.win-line.win-col-right {
+  animation:
+    draw-line-vertical 1s ease forwards;
+}
+
+/* DIAGONAL */
+.win-line.win-diagonal-main {
+  top: 50%;
+  left: 50%;
+  width: 115%;
+  height: 6px;
+
+  transform:
+    translate(-50%, -50%) rotate(45deg);
+  animation:
+    draw-line-diagonal 1s ease forwards;
+}
+
+.win-line.win-diagonal-secondary {
+  top: 50%;
+  left: 50%;
+  width: 115%;
+  height: 6px;
+
+  transform:
+    translate(-50%, -50%) rotate(-45deg);
+  animation:
+    draw-line-diagonal-secondary 1s ease forwards;
+}
+
+@keyframes draw-line-horizontal {
+
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes draw-line-vertical {
+
+  from {
+    transform: scaleY(0);
+  }
+
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes draw-line-diagonal {
+
+  from {
+    opacity: 0;
+    transform:
+      translate(-50%, -50%) rotate(45deg) scaleX(0);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translate(-50%, -50%) rotate(45deg) scaleX(1);
+  }
+}
+
+@keyframes draw-line-diagonal-secondary {
+
+  from {
+    opacity: 0;
+    transform:
+      translate(-50%, -50%) rotate(-45deg) scaleX(0);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translate(-50%, -50%) rotate(-45deg) scaleX(1);
+  }
+}
+
+

@@ -56,3 +56,7 @@ button {
         box-shadow var(--transition-fast);
 }
 
+img {
+    height: 2rem;
+    width: 2rem;
+}

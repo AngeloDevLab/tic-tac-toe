@@ -22,9 +22,10 @@ import {
 
 import {
     selectGameMode,
-    selectMatchType
+    selectMatchType,
+    handleCellClick,
+    restartGame
 } from "./game.js";
-
 
 export function render() {
 
@@ -42,6 +43,7 @@ export function render() {
 
     if (gameState.currentScreen === "game") {
         app.innerHTML = getGameTemplate();
+        initGameEvents();
     }
 }
 
@@ -79,4 +81,26 @@ function initMatchTypeEvents() {
     //     .addEventListener("click", () => {
     //         selectMatchType("online");
     //     });
+}
+
+function initGameEvents() {
+    document.querySelectorAll(".cell").forEach((cell) => {
+
+        cell.addEventListener("click", () => {
+
+            const index =
+                Number(cell.dataset.index);
+
+            handleCellClick(index);
+        });
+    });
+
+    const restartBtn = document.getElementById("restart-btn");
+
+    if (restartBtn) {
+
+        restartBtn.addEventListener("click", () => {
+            restartGame();
+        });
+    }
 }

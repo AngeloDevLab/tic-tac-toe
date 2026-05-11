@@ -16,7 +16,11 @@
 
 export let gameState = {
     currentScreen: "landing",
-
     gameMode: null, // "classic" | "ultimate"
-    matchType: null // "singleplayer" | "local" | "online"
+    matchType: null, // "singleplayer" | "local" | "online"
+    currentPlayer: "cross",
+    fields: Array(9).fill(null),
+    winner: null, // cross | circle
+    winningCombination: null,
+    gameOver: false
 };
