@@ -11,11 +11,6 @@
 // - Setup global event listeners
 // - Trigger first render
 //==================================================
+import { initApp } from "./render.js";
 
-import { render } from "./render.js";
-
-document.addEventListener("DOMContentLoaded", init);
-
-function init() {
-    render();
-}
+document.addEventListener("DOMContentLoaded", initApp);

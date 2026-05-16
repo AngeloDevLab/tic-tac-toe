@@ -11,96 +11,133 @@
 //
 // Only visual logic belongs here.
 //==================================================
-
-import { gameState } from "./state.js";
+import { gameState, SCREENS } from "./state.js";
 
 import {
-    getLandingPageTemplate,
-    getMatchTypeTemplate,
-    getGameTemplate
+    getAppLayoutTemplate,
+    getHeaderTemplate,
+    getSetupTemplate,
+    getLoadingTemplate,
+    getGameTemplate,
+    getHelpModalTemplate
 } from "./templates.js";
 
 import {
     selectGameMode,
     selectMatchType,
     handleCellClick,
-    restartGame
+    restartGame,
+    canStartGame,
+    startGameFlow,
+    goBackToSetup
 } from "./game.js";
 
+let loadingTimer = null;
+
+export function initApp() {
+    startLoadingTransition({
+        targetScreen: SCREENS.SETUP,
+        loadingScreen: SCREENS.LOADING_INITIAL,
+        duration: 1600
+    });
+}
+
+export function navigateTo(screen) {
+    gameState.currentScreen = screen;
+    render();
+}
+
+export function startLoadingTransition({ targetScreen, loadingScreen, duration = 1500 }) {
+    window.clearInterval(loadingTimer);
+    gameState.currentScreen = loadingScreen;
+    gameState.loadingProgress = 0;
+    gameState.loadingLabel = "Loading";
+    render();
+
+    const intervalMs = 35;
+    const step = Math.ceil(100 / (duration / intervalMs));
+
+    loadingTimer = window.setInterval(() => {
+        gameState.loadingProgress = Math.min(100, gameState.loadingProgress + step);
+        gameState.loadingLabel = `Loading${".".repeat((Math.floor(gameState.loadingProgress / 20) % 3) + 1)}`;
+
+        if (gameState.loadingProgress >= 100) {
+            window.clearInterval(loadingTimer);
+            gameState.currentScreen = targetScreen;
+            render();
+            return;
+        }
+
+        render();
+    }, intervalMs);
+}
+
 export function render() {
-
     const app = document.getElementById("app");
+    app.innerHTML = getAppLayoutTemplate({
+        header: getHeaderTemplate(),
+        main: getMainTemplate(),
+        modal: getHelpModalTemplate()
+    });
 
-    if (gameState.currentScreen === "landing") {
-        app.innerHTML = getLandingPageTemplate();
-        initLandingPageEvents();
-    }
-
-    if (gameState.currentScreen === "match-type") {
-        app.innerHTML = getMatchTypeTemplate();
-        initMatchTypeEvents();
-    }
-
-    if (gameState.currentScreen === "game") {
-        app.innerHTML = getGameTemplate();
-        initGameEvents();
-    }
+    initGlobalEvents();
 }
 
-function initLandingPageEvents() {
-    document
-        .getElementById("classic-btn")
-        .addEventListener("click", () => {
-            selectGameMode("classic");
-        });
+function getMainTemplate() {
+    if (gameState.currentScreen === SCREENS.LOADING_INITIAL ||
+        gameState.currentScreen === SCREENS.LOADING_GAME) {
+        return getLoadingTemplate();
+    }
 
-    // document
-    //     .getElementById("ultimate-btn")
-    //     .addEventListener("click", () => {
-    //         selectGameMode("ultimate");
-    //     });
+    if (gameState.currentScreen === SCREENS.SETUP) {
+        return getSetupTemplate();
+    }
+
+    if (gameState.currentScreen === SCREENS.GAME) {
+        return getGameTemplate();
+    }
+
+    return "";
 }
 
+function initGlobalEvents() {
+    document.getElementById("help-btn")?.addEventListener("click", openHelpModal);
+    document.getElementById("help-close-btn")?.addEventListener("click", closeHelpModal);
+    document.getElementById("help-overlay")?.addEventListener("click", (event) => {
+        if (event.target.id === "help-overlay") closeHelpModal();
+    });
 
-function initMatchTypeEvents() {
+    if (gameState.currentScreen === SCREENS.SETUP) initSetupEvents();
+    if (gameState.currentScreen === SCREENS.GAME) initGameEvents();
+}
 
-    // document
-    //     .getElementById("singleplayer-btn")
-    //     .addEventListener("click", () => {
-    //         selectMatchType("singleplayer");
-    //     });
+function initSetupEvents() {
+    document.querySelectorAll("[data-mode]").forEach((button) => {
+        button.addEventListener("click", () => selectGameMode(button.dataset.mode));
+    });
 
-    document
-        .getElementById("local-btn")
-        .addEventListener("click", () => {
-            selectMatchType("local");
-        });
+    document.querySelectorAll("[data-match]").forEach((button) => {
+        button.addEventListener("click", () => selectMatchType(button.dataset.match));
+    });
 
-    // document
-    //     .getElementById("online-btn")
-    //     .addEventListener("click", () => {
-    //         selectMatchType("online");
-    //     });
+    document.getElementById("start-game-btn")?.addEventListener("click", () => {
+        if (canStartGame()) startGameFlow();
+    });
 }
 
 function initGameEvents() {
     document.querySelectorAll(".cell").forEach((cell) => {
-
-        cell.addEventListener("click", () => {
-
-            const index =
-                Number(cell.dataset.index);
-
-            handleCellClick(index);
-        });
+        cell.addEventListener("click", () => handleCellClick(Number(cell.dataset.index)));
     });
 
-    const restartBtn = document.getElementById("restart-btn");
+    document.getElementById("restart-btn")?.addEventListener("click", restartGame);
+    document.getElementById("back-to-setup-btn")?.addEventListener("click", goBackToSetup);
+}
 
-    if (restartBtn) {
+function openHelpModal() {
+    document.getElementById("help-overlay")?.classList.add("is-open");
+}
 
-        restartBtn.addEventListener("click", () => {
-            restartGame();
-        });
-    }
+function closeHelpModal() {
+    document.getElementById("help-overlay")?.classList.remove("is-open");
 }

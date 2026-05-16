@@ -18,3 +18,71 @@
 .max-content {
   padding: 0 max(calc(50% - 720px), clamp(1rem, 4vw, 4rem));
 }
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-bottom: var(--border-size) solid var(--color-border);
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(4px);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.brand-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-logo { width: 1.5rem; height: 1.5rem; }
+
+.brand-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.app-main {
+  min-height: calc(100vh - 72px);
+}
+
+.header-help-btn,
+.secondary-btn {
+  background-color: transparent;
+  border: var(--border-size) solid var(--color-border);
+  color: var(--color-text);
+}
+
+.header-help-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+}
+
+.help-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(2, 6, 23, 0.7);
+  z-index: 100;
+  padding: 1rem;
+}
+
+.help-overlay.is-open { display: flex; }
+
+.help-modal {
+  width: min(100%, 500px);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  border: var(--border-size) solid var(--color-border);
+  background: var(--color-surface);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

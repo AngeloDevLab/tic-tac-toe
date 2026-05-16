@@ -49,7 +49,7 @@
     box-shadow var(--transition-fast);
 }
 
-.cell img {
+.cell svg {
   width: 80%;
   height: 80%;
 }
@@ -212,4 +212,8 @@
   }
 }
 
-
+.game-action-row {
+  display: flex;
+  gap: 0.75rem;
+  width: min(100%, 420px);
+}

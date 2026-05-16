@@ -22,38 +22,29 @@ html {
 
 body {
     margin: 0;
-
     background-color: var(--color-bg);
     color: var(--color-text);
-
     font-family: var(--font-family);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
     min-height: 100vh;
 }
 
-h1,
-h2,
-h3,
-p {
-    margin: 0;
+#app {
+    min-height: 100vh;
 }
+
+h1, h2, h3, p { margin: 0; }
 
 button {
     border: none;
-
     font: inherit;
     color: inherit;
-
     cursor: pointer;
+    transition: transform var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
+}
 
-    transition:
-        transform var(--transition-fast),
-        background-color var(--transition-fast),
-        box-shadow var(--transition-fast);
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 img {
