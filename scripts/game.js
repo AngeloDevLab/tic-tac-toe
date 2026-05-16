@@ -12,9 +12,8 @@
 //
 // No direct DOM rendering here.
 //==================================================
-
-import { gameState } from "./state.js";
-import { render } from "./render.js";
+import { gameState, SCREENS } from "./state.js";
+import { render, startLoadingTransition, navigateTo } from "./render.js";
 
 const winningCombinations = [
     [0, 1, 2],
@@ -67,7 +66,6 @@ export function handleCellClick(index) {
     checkWinner();
 
     if (!gameState.gameOver) {
-        switchPlayer();
         if (isBoardFull()) {
             gameState.isDraw = true;
             gameState.gameOver = true;
@@ -94,7 +92,6 @@ function checkWinner() {
             gameState.winner = firstField;
             gameState.winningCombination = combination;
             gameState.gameOver = true;
-
             return;
         }
     }
@@ -111,7 +108,6 @@ function restartGameState() {
     gameState.winningCombination = null;
     gameState.isDraw = false;
     gameState.gameOver = false;
-    
 }
 
 export function restartGame() {
