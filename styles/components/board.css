@@ -1,17 +1,3 @@
-/*==================================================
-  BOARD.CSS
-
-  Styles for the game board and gameplay UI.
-
-  Responsibilities:
-  - Board layout
-  - Cell styling
-  - Player symbols
-  - Active board highlighting
-  - Winner and draw visuals
-  - Ingame UI elements
-==================================================*/
-
 .game-screen {
   display: flex;
   justify-content: center;
@@ -34,6 +20,13 @@
   width: clamp(200px, 80vw, 420px);
 }
 
+.game-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
 .cell {
   display: flex;
   justify-content: center;
@@ -49,7 +42,7 @@
     box-shadow var(--transition-fast);
 }
 
-.cell svg {
+.cell img {
   width: 80%;
   height: 80%;
 }
@@ -70,6 +63,13 @@
 
   color: var(--color-text);
 }
+
+.game-action-row {
+  display: flex;
+  gap: 0.75rem;
+  width: min(100%, 420px);
+}
+
 
 .win-line {
   position: absolute;
@@ -141,7 +141,6 @@
   left: 50%;
   width: 115%;
   height: 6px;
-
   transform:
     translate(-50%, -50%) rotate(45deg);
   animation:
@@ -153,7 +152,6 @@
   left: 50%;
   width: 115%;
   height: 6px;
-
   transform:
     translate(-50%, -50%) rotate(-45deg);
   animation:
@@ -212,8 +210,3 @@
   }
 }
 
-.game-action-row {
-  display: flex;
-  gap: 0.75rem;
-  width: min(100%, 420px);
-}

@@ -135,9 +135,17 @@ function initGameEvents() {
 }
 
 function openHelpModal() {
-    document.getElementById("help-overlay")?.classList.add("is-open");
+    const overlay = document.getElementById("help-overlay");
+    const closeBtn = document.getElementById("help-close-btn");
+    overlay.classList.add("is-open");
+    overlay.setAttribute("aria-hidden", "false");
+    closeBtn.focus();
 }
 
 function closeHelpModal() {
-    document.getElementById("help-overlay")?.classList.remove("is-open");
+    const overlay = document.getElementById("help-overlay");
+    const helpBtn = document.getElementById("help-btn");
+    helpBtn.focus();
+    overlay.classList.remove("is-open");
+    overlay.setAttribute("aria-hidden", "true");
 }

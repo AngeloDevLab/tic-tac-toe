@@ -1,0 +1,78 @@
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-xs);
+    min-height: var(--button-height);
+    padding-inline: 1.25rem;
+    border:
+        var(--border-size)
+        solid
+        transparent;
+    border-radius: var(--border-radius);
+    background: rgba(255,255,255,0.03);
+    color: var(--color-text);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        transform var(--transition-fast),
+        background-color var(--transition-fast),
+        border-color var(--transition-fast),
+        opacity var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.btn svg {
+    color: var(--color-text);
+    width: 1rem;
+    height: 1rem;
+}
+
+.btn:hover:not(:disabled) {
+    transform: scale(1.05);
+    background: rgba(255,255,255,0.06);
+}
+
+.btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+.btn-primary {
+    background: var(--color-primary);
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: var(--color-hover-primary);
+    box-shadow: var(--shadow-glow);
+}
+
+.btn-secondary {
+    border-color: var(--color-border);
+    background: rgba(255,255,255,0.03);
+}
+
+.btn-ghost {
+    background-color: transparent;
+    border: var(--border-size) solid var(--color-border);
+    color: var(--color-text);
+}
+
+.btn-icon {
+    min-height: auto;
+    padding: 0.75rem 1rem;
+    border-radius: 999px;
+}
+
+.is-selected {
+    border-color: var(--color-primary);
+    background: rgba(56, 189, 248, 0.10);
+    box-shadow: var(--shadow-glow);
+}
