@@ -1,0 +1,25 @@
+.help-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(2, 6, 23, 0.7);
+  z-index: 1;
+  padding: 1rem;
+}
+
+.help-overlay.is-open {
+  display: flex;
+}
+
+.help-modal {
+  width: min(100%, 500px);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  border: var(--border-size) solid var(--color-border);
+  background: var(--color-surface);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

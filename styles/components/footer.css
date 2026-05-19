@@ -1,0 +1,25 @@
+.app-footer {
+    display: flex;
+    align-items: center;
+    height: 6rem;
+    border-top: var(--border-size) solid var(--color-border);
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(4px);
+    z-index: 1;
+}
+
+.footer-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}

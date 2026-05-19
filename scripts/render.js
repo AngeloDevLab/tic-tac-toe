@@ -1,25 +1,9 @@
-//==================================================
-// RENDER.JS
-//==================================================
-// Handles all UI rendering and DOM updates.
-//
-// Responsibilities:
-// - Render game boards
-// - Render symbols and UI elements
-// - Update the visual game state
-// - Render menus, winner screens and overlays
-//
-// Only visual logic belongs here.
-//==================================================
 import { gameState, SCREENS } from "./state.js";
 
 import {
-    getAppLayoutTemplate,
-    getHeaderTemplate,
     getSetupTemplate,
     getLoadingTemplate,
     getGameTemplate,
-    getHelpModalTemplate
 } from "./templates.js";
 
 import {
@@ -28,7 +12,7 @@ import {
     handleCellClick,
     restartGame,
     canStartGame,
-    startGameFlow,
+    startGame,
     goBackToSetup
 } from "./game.js";
 
@@ -37,8 +21,8 @@ let loadingTimer = null;
 export function initApp() {
     startLoadingTransition({
         targetScreen: SCREENS.SETUP,
-        loadingScreen: SCREENS.LOADING_INITIAL,
-        duration: 1600
+        duration: 1400,
+        label: "loading"
     });
 }
 
@@ -47,11 +31,10 @@ export function navigateTo(screen) {
     render();
 }
 
-export function startLoadingTransition({ targetScreen, loadingScreen, duration = 1500 }) {
+export function startLoadingTransition({ targetScreen, duration, label}) {
     window.clearInterval(loadingTimer);
-    gameState.currentScreen = loadingScreen;
+    gameState.currentScreen = SCREENS.LOADING;
     gameState.loadingProgress = 0;
-    gameState.loadingLabel = "Loading";
     render();
 
     const intervalMs = 35;
@@ -59,7 +42,7 @@ export function startLoadingTransition({ targetScreen, loadingScreen, duration =
 
     loadingTimer = window.setInterval(() => {
         gameState.loadingProgress = Math.min(100, gameState.loadingProgress + step);
-        gameState.loadingLabel = `Loading${".".repeat((Math.floor(gameState.loadingProgress / 20) % 3) + 1)}`;
+        gameState.loadingLabel = `${label} ${".".repeat((Math.floor(gameState.loadingProgress / 20) % 3) + 1)}`;
 
         if (gameState.loadingProgress >= 100) {
             window.clearInterval(loadingTimer);
@@ -73,19 +56,13 @@ export function startLoadingTransition({ targetScreen, loadingScreen, duration =
 }
 
 export function render() {
-    const app = document.getElementById("app");
-    app.innerHTML = getAppLayoutTemplate({
-        header: getHeaderTemplate(),
-        main: getMainTemplate(),
-        modal: getHelpModalTemplate()
-    });
-
+    const app = document.getElementById("app-main");
+    app.innerHTML = getMainTemplate();
     initGlobalEvents();
 }
 
 function getMainTemplate() {
-    if (gameState.currentScreen === SCREENS.LOADING_INITIAL ||
-        gameState.currentScreen === SCREENS.LOADING_GAME) {
+    if (gameState.currentScreen === SCREENS.LOADING) {
         return getLoadingTemplate();
     }
 
@@ -121,7 +98,7 @@ function initSetupEvents() {
     });
 
     document.getElementById("start-game-btn")?.addEventListener("click", () => {
-        if (canStartGame()) startGameFlow();
+        if (canStartGame()) startGame();
     });
 }
 

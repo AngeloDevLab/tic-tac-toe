@@ -1,92 +1,68 @@
 # TODO
 
-## Core Architecture
-- [ ] Improve render flow
-- [ ] Create centralized screen rendering
-- [ ] Add reusable overlay system
-- [ ] Improve state structure
-- [ ] Create utility helper functions
+## Phase 1 — Classic Foundation
 
----
+### Core Gameplay
+- [x] Render classic board
+- [x] Add player turns
+- [x] Add move validation
+- [x] Add winner detection
+- [x] Add draw detection
+- [x] Add restart game
 
-## Navigation & Layout
-- [ ] Create header component
+### UI & Layout
+- [x] Create header component
+- [x] Add navigation flow
+- [x] Add screen transitions
 - [ ] Create footer component
-- [ ] Add navigation flow
-- [ ] Add back button system
-- [ ] Add screen transitions
+- [ ] Improve setup layout
+- [ ] Improve game layout
+- [ ] Improve responsive layout
+- [ ] Polish button system
 
----
+### UX
+- [x] Create help overlay
+- [x] Add back button system
+- [ ] Add loading screen polish
+- [ ] Add hover animations
+- [ ] Add winner animations
 
-## Legal & Information
-- [ ] Create imprint overlay/page
-- [ ] Create privacy overlay/page
-- [ ] Add github/project links
+### Architecture
+- [ ] Improve render flow
+- [ ] Clean template structure
+- [ ] Improve state structure
+- [ ] Add translation system
+- [ ] Add JSDoc documentation
 
----
+## Phase 2 — Singleplayer AI
 
-## Help & Tutorial
-- [ ] Create help overlay
-- [ ] Explain classic mode rules
-- [ ] Explain ultimate mode rules
-- [ ] Add gameplay examples
-- [ ] Add "how to play" section
+- [ ] Create random AI
+- [ ] Add basic AI turns
+- [ ] Add move evaluation
+- [ ] Improve AI difficulty
 
----
+## Phase 3 — Online Multiplayer
 
-## Classic Tic Tac Toe
-- [ ] Render classic board
-- [ ] Add player turns
-- [ ] Add move validation
-- [ ] Add winner detection
-- [ ] Add draw detection
-- [ ] Add restart game
+- [ ] Evaluate backend solution
+- [ ] Create room system
+- [ ] Add invite code system
+- [ ] Sync game state
+- [ ] Handle reconnects
 
----
+## Phase 4 — Ultimate Tic Tac Toe
 
-## Ultimate Tic Tac Toe
 - [ ] Create nested board structure
 - [ ] Render ultimate board
 - [ ] Add active board logic
 - [ ] Add mini-board winner detection
 - [ ] Add global winner detection
+- [ ] Update AI for ultimate mode
+- [ ] Update multiplayer sync
 
----
+## Phase 5 — Polish & Expansion
 
-## Match Types
-- [ ] Singleplayer setup
-- [ ] Local multiplayer setup
-- [ ] Online multiplayer preparation
-
----
-
-## AI
-- [ ] Create random AI
-- [ ] Add move evaluation
-- [ ] Improve AI difficulty
-
----
-
-## Online Multiplayer
-- [ ] Evaluate Firebase setup
-- [ ] Create room system
-- [ ] Add invite code system
-- [ ] Sync game state
-
----
-
-## UI & Effects
-- [ ] Add board animations
-- [ ] Add hover effects
 - [ ] Add sound effects
-- [ ] Add winner animations
-- [ ] Improve responsive layout
-
----
-
-## Future Ideas
-- [ ] Ranked mode
-- [ ] Spectator mode
-- [ ] Replay system
-- [ ] Match history
-- [ ] Themes and skins
+- [ ] Add themes
+- [ ] Add match history
+- [ ] Add replay system
+- [ ] Add ranked mode

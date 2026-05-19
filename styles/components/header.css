@@ -16,7 +16,7 @@
     justify-content: space-between;
 }
 
-.brand-wrap {
+.brand-link {
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);

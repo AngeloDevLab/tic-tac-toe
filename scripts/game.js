@@ -1,63 +1,94 @@
-//==================================================
-// GAME.JS
-//==================================================
-// Core game logic and gameplay flow.
-//
-// Responsibilities:
-// - Handle player moves
-// - Switch turns
-// - Validate moves
-// - Check win and draw conditions
-// - Restart and reset gameplay
-//
-// No direct DOM rendering here.
-//==================================================
 import { gameState, SCREENS } from "./state.js";
 import { render, startLoadingTransition, navigateTo } from "./render.js";
 
+
+/**
+ * All possible winning
+ * combinations for the board.
+ */
 const winningCombinations = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
-
     [0, 3, 6],
     [1, 4, 7],
     [2, 5, 8],
-
     [0, 4, 8],
     [2, 4, 6]
 ];
 
+
+/**
+ * Sets the selected game mode
+ * and rerenders the UI.
+ */
 export function selectGameMode(mode) {
     gameState.gameMode = mode;
     render();
 }
 
+
+/**
+ * Sets the selected match type
+ * and rerenders the UI.
+ */
 export function selectMatchType(type) {
     gameState.matchType = type;
     render();
 }
 
+
+/**
+ * Checks whether the game
+ * can be started.
+ *
+ * @returns {boolean} True if
+ * game mode and match type
+ * are selected.
+ */
 export function canStartGame() {
     return Boolean(gameState.gameMode && gameState.matchType);
 }
 
-export function startGameFlow() {
+
+/**
+ * Starts the game
+ * and triggers the loading transition.
+ */
+export function startGame() {
     if (!canStartGame()) return;
 
-    restartGameState();
+    resetGameState();
     startLoadingTransition({
         targetScreen: SCREENS.GAME,
-        loadingScreen: SCREENS.LOADING_GAME,
-        duration: 1400
+        duration: 1800,
+        label: "Starting Game"
     });
 }
 
+
+/**
+ * Resets the current game
+ * and navigates back to the setup screen.
+ */
 export function goBackToSetup() {
-    restartGameState();
+    resetGameState();
     navigateTo(SCREENS.SETUP);
 }
 
+
+/**
+ * Handles a player move
+ * when a board cell is clicked.
+ *
+ * Updates:
+ * - player fields
+ * - winner state
+ * - draw state
+ * - active player
+ *
+ * @param {number} index - Index of the clicked cell.
+ */
 export function handleCellClick(index) {
     if (gameState.gameOver) return;
     if (gameState.fields[index] !== null) return;
@@ -77,10 +108,20 @@ export function handleCellClick(index) {
     render();
 }
 
+
+/**
+ * Switches the active player.
+ */
 function switchPlayer() {
     gameState.currentPlayer = gameState.currentPlayer === "cross" ? "circle" : "cross";
 }
 
+
+/**
+ * Checks all winning combinations
+ * and updates the game state
+ * when a winner is found.
+ */
 function checkWinner() {
     for (const combination of winningCombinations) {
         const [a, b, c] = combination;
@@ -97,11 +138,22 @@ function checkWinner() {
     }
 }
 
+
+/**
+ * Checks whether the game board is full.
+ *
+ * @returns {boolean} True if all fields are occupied.
+ */
 function isBoardFull() {
     return gameState.fields.every((field) => field !== null);
 }
 
-function restartGameState() {
+
+/**
+ * Resets the game state
+ * to its default values.
+ */
+function resetGameState() {
     gameState.fields = Array(9).fill(null);
     gameState.currentPlayer = "cross";
     gameState.winner = null;
@@ -110,7 +162,12 @@ function restartGameState() {
     gameState.gameOver = false;
 }
 
+
+/**
+ * Restarts the game
+ * and rerenders the UI.
+ */
 export function restartGame() {
-    restartGameState();
+    resetGameState();
     render();
 }

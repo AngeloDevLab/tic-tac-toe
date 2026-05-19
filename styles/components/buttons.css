@@ -30,7 +30,7 @@
 }
 
 .btn:hover:not(:disabled) {
-    transform: scale(1.05);
+    transform: scale(1.03);
     background: rgba(255,255,255,0.06);
 }
 

@@ -1,76 +1,11 @@
-//==================================================
-// TEMPLATES.JS
-//==================================================
-// Contains reusable HTML template functions.
-//
-// Responsibilities:
-// - Generate HTML structures
-// - Return template strings
-// - Keep markup separated from logic
-//
-// No game logic or DOM manipulation here.
-//==================================================
-
 import { gameState } from "./state.js";
 
-export function getAppLayoutTemplate({ header, main, modal }) {
-    return `
-        ${header}
-        <main class="app-main">${main}</main>
-        ${modal}
-    `;
-}
 
-export function getHeaderTemplate() {
-    return `
-        <header class="app-header">
-            <div class="header-wrap max-content">
-                <div class="brand-wrap">
-                    <img class="brand-logo" src="./assets/icons/favicon.svg" alt="GameHub logo">
-                    <span class="hide-on-mobile brand-name">GameHub</span>
-                </div>
-
-                <div class="header-actions">
-                    <button id="help-btn" class="btn btn-ghost header-btn" type="button">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="hide-on-mobile">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M12 16v-4"/>
-                            <path d="M12 8h.01"/>
-                        </svg>
-                        help
-                    </button>
-
-                    <button id="language-btn" class="btn btn-ghost header-btn" type="button">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="hide-on-mobile">
-                            <path d="m5 8 6 6"/>
-                            <path d="m4 14 6-6 2-3"/>
-                            <path d="M2 5h12"/>
-                            <path d="M7 2h1"/>
-                            <path d="m22 22-5-10-5 10"/>
-                            <path d="M14 18h6"/>
-                        </svg>
-                        eng
-                    </button>
-                </div>
-            </div>
-        </header>
-    `;
-}
-
-export function getHelpModalTemplate() {
-    return `
-        <div id="help-overlay" class="help-overlay" aria-hidden="true">
-            <article class="help-modal">
-                <h2>How to Play</h2>
-                <p>Choose a game mode and match type before starting the game.</p>
-                <p>Match three symbols in a row to win the game.</p>
-                <p>If the board is full and nobody wins, the match ends in a draw.</p>
-                <button id="help-close-btn" class="btn btn-ghost" type="button">Schließen</button>
-            </article>
-        </div>
-    `;
-}
-
+/**
+ * Returns the loading screen template.
+ *
+ * @returns {string}
+ */
 export function getLoadingTemplate() {
     return `
         <section class="loading-screen">
@@ -87,6 +22,12 @@ export function getLoadingTemplate() {
     `;
 }
 
+
+/**
+ * Returns the setup screen template.
+ *
+ * @returns {string}
+ */
 export function getSetupTemplate() {
     return `
         <section class="setup-page max-content">
@@ -183,6 +124,11 @@ export function getSetupTemplate() {
     `;
 }
 
+/**
+ * Returns the active game screen template.
+ *
+ * @returns {string}
+ */
 export function getGameTemplate() {
     return `
         <section class="game-screen">
@@ -207,11 +153,26 @@ export function getGameTemplate() {
     `;
 }
 
+
+/**
+ * Renders a selectable option button.
+ *
+ * @param {string} label - Visible button text.
+ * @param {string} value - Internal button value.
+ * @param {boolean} isSelected - Selection state.
+ * @param {string} type - Option category.
+ *
+ * @returns {string} HTML button template.
+ */
 function renderSelectableButton(label, value, isSelected, type) {
     const dataAttr = type === "mode" ? `data-mode="${value}"` : `data-match="${value}"`;
     return `<button class="btn btn-secondary ${isSelected ? "is-selected" : ""}" ${dataAttr}>${label}</button>`;
 }
 
+
+/**
+ * Renders all board cells.
+ */
 function renderCells() {
     return gameState.fields
         .map((field, index) => `
@@ -220,12 +181,31 @@ function renderCells() {
         .join("");
 }
 
+
+/**
+ * Returns the corresponding symbol image.
+ *
+ * @param {string|null} symbol
+ *
+ * @returns {string} HTML image template.
+ */
 function renderSymbol(symbol) {
     if (symbol === "cross") return `<img src="./assets/icons/cross.svg" alt="Cross">`;
     if (symbol === "circle") return `<img src="./assets/icons/circle.svg" alt="Circle">`;
     return "";
 }
 
+
+/**
+ * Renders the current game status message.
+ *
+ * Displays:
+ * - current player
+ * - winner state
+ * - draw state
+ *
+ * @returns {string} HTML status template.
+ */
 function renderGameStatus() {
 
     if (gameState.winner) {
@@ -239,17 +219,37 @@ function renderGameStatus() {
     return `<p class="game-status">Current Player: ${renderSymbol(gameState.currentPlayer)}</p>`;
 }
 
+
+/**
+ * Renders the restart button
+ * after the game is over.
+ *
+ * @returns {string} HTML button template.
+ */
 function renderRestartButton() {
     if (!gameState.gameOver) return "";
     return `<button id="restart-btn" class="btn btn-primary">Restart</button>`;
 }
 
+
+/**
+ * Renders the winning line overlay
+ * for the current winning combination.
+ *
+ * @returns {string} HTML win line template.
+ */
 function renderWinLine() {
     if (!gameState.winningCombination) return "";
     return `<div class="win-line ${getWinLineClass()}"></div>`;
 }
 
 
+/**
+ * Returns the CSS class name
+ * for the current winning combination.
+ *
+ * @returns {string}
+ */
 function getWinLineClass() {
     const combination = gameState.winningCombination.join("-");
     const classes = {
@@ -266,6 +266,15 @@ function getWinLineClass() {
     return classes[combination];
 }
 
+
+/**
+ * Formats internal selection values
+ * into readable labels.
+ *
+ * @param {string|null} value
+ *
+ * @returns {string}
+ */
 function formatSelectedValue(value) {
     if (!value) return "No selection";
     const labelMap = {
@@ -279,6 +288,13 @@ function formatSelectedValue(value) {
     return labelMap[value] ?? value;
 }
 
+
+/**
+ * Checks whether the game
+ * can be started.
+ *
+ * @returns {boolean}
+ */
 function canStart() {
     return Boolean(gameState.gameMode && gameState.matchType);
 }

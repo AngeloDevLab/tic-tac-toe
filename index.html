@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="./styles/variables.css">
     <link rel="stylesheet" href="./styles/standard.css">
     <link rel="stylesheet" href="./styles/style.css">
-    <link rel="stylesheet" href="./styles/animations.css">
     <link rel="stylesheet" href="./styles/components/header.css">
     <link rel="stylesheet" href="./styles/components/footer.css">
     <link rel="stylesheet" href="./styles/components/board.css">
@@ -22,7 +21,69 @@
     <script type="module" src="./scripts/main.js"></script>
 </head>
 
-<body id="app">
+<body>
+
+    <header class="app-header">
+        <div class="header-wrap max-content">
+
+            <a class="brand-link" href="./index.html">
+                <img class="brand-logo" src="./assets/icons/favicon.svg" alt="GameHub logo">
+                <p class="hide-on-mobile brand-name">GameHub</p>
+            </a>
+
+            <div class="header-actions">
+                <button id="help-btn" class="btn btn-ghost header-btn" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="hide-on-mobile">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 16v-4" />
+                        <path d="M12 8h.01" />
+                    </svg>
+                    help
+                </button>
+
+                <button id="language-btn" class="btn btn-ghost header-btn" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="hide-on-mobile">
+                        <path d="m5 8 6 6" />
+                        <path d="m4 14 6-6 2-3" />
+                        <path d="M2 5h12" />
+                        <path d="M7 2h1" />
+                        <path d="m22 22-5-10-5 10" />
+                        <path d="M14 18h6" />
+                    </svg>
+                    eng
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="app-main" class="app-main"></main>
+
+    <div id="help-overlay" class="help-overlay" aria-hidden="true">
+        <article class="help-modal">
+            <h2>How to Play</h2>
+            <p>Choose a game mode and match type before starting the game.</p>
+            <p>Match three symbols in a row to win the game.</p>
+            <p>If the board is full and nobody wins, the match ends in a draw.</p>
+            <button id="help-close-btn" class="btn btn-ghost">Close</button>
+        </article>
+    </div>
+
+    <footer class="app-footer">
+        <div class="footer-wrap max-content">
+            <a class="brand-link" href="./index.html">
+                <img class="brand-logo" src="./assets/icons/favicon.svg" alt="GameHub logo">
+                <p class="hide-on-mobile brand-name">GameHub</p>
+            </a>
+
+            <nav class="footer-links">
+                <a href="">Imprint</a>
+                <a href="">Privacy</a>
+            </nav>
+        </div>
+
+
+
+    </footer>
 
 </body>
 
