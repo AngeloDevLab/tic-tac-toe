@@ -133,19 +133,32 @@ export function getGameTemplate() {
     return `
         <section class="game-screen">
 
-            <div class="game-container">
+            <div class="game-container max-content">
 
-                <div class="game-header">
-                    ${renderGameStatus()}
-                </div>
-                <div class="game-board">
-                    ${renderCells()}
-                    ${renderWinLine()}
-                </div>
+                <div class="board-panel">
 
-                <div class="game-action-row">
-                    ${renderRestartButton()}
-                    <button id="back-to-setup-btn" class="btn btn-secondary">Back</button>
+                    <div class="game-board">
+                        ${renderCells()}
+                        ${renderWinLine()}
+                    </div>
+
+                </div>
+                
+                <div class="game-panel">
+
+                    <div class="game-header">
+                        ${renderGameStatus()}
+                    </div>
+
+                    <div class="game-action-row">
+                        ${renderRestartButton()}
+                        <button
+                            id="back-to-setup-btn"
+                            class="btn btn-secondary">
+                            Back
+                        </button>
+                    </div>
+
                 </div>
             </div>
 
