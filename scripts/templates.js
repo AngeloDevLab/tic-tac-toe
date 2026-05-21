@@ -51,14 +51,16 @@ export function getSetupTemplate() {
                                 "Classic",
                                 "classic",
                                 gameState.gameMode === "classic",
-                                "mode"
+                                "mode",
+                                false
                             )}
 
                             ${renderSelectableButton(
-                                "Ultimate",
+                                "Ultimate (WIP)",
                                 "ultimate",
                                 gameState.gameMode === "ultimate",
-                                "mode"
+                                "mode", 
+                                true
                             )}
                         </div>
                     </div>
@@ -68,24 +70,27 @@ export function getSetupTemplate() {
 
                         <div class="button-group">
                             ${renderSelectableButton(
-                                "Singleplayer",
+                                "Singleplayer (WIP)",
                                 "singleplayer",
                                 gameState.matchType === "singleplayer",
-                                "match"
+                                "match",
+                                true
                             )}
 
                             ${renderSelectableButton(
                                 "Local Multiplayer",
                                 "local",
                                 gameState.matchType === "local",
-                                "match"
+                                "match",
+                                false
                             )}
 
                             ${renderSelectableButton(
-                                "Online Multiplayer",
+                                "Online Multiplayer (WIP)",
                                 "online",
                                 gameState.matchType === "online",
-                                "match"
+                                "match",
+                                true
                             )}
                         </div>
                     </div>
@@ -174,12 +179,13 @@ export function getGameTemplate() {
  * @param {string} value - Internal button value.
  * @param {boolean} isSelected - Selection state.
  * @param {string} type - Option category.
+ * @param {boolean} isDisabled
  *
  * @returns {string} HTML button template.
  */
-function renderSelectableButton(label, value, isSelected, type) {
+function renderSelectableButton(label, value, isSelected, type, isDisabled) {
     const dataAttr = type === "mode" ? `data-mode="${value}"` : `data-match="${value}"`;
-    return `<button class="btn btn-secondary ${isSelected ? "is-selected" : ""}" ${dataAttr}>${label}</button>`;
+    return `<button class="btn btn-secondary ${isSelected ? "is-selected" : ""}" ${dataAttr} ${isDisabled ? "disabled" : ""}>${label}</button>`;
 }
 
 
