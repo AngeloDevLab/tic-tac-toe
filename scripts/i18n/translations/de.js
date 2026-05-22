@@ -1,10 +1,12 @@
 export const de = {
     header: {
         help: "Hilfe",
-        language: "DE"
     },
 
-    loading: {},
+    loading: {
+        title: "Lade",
+        startGame: "Starte Spiel"
+    },
 
     setup: {},
 

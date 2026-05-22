@@ -29,5 +29,5 @@ export function updateLanguageButton() {
         return;
     }
 
-    button.textContent =getLanguage().toUpperCase();
+    button.textContent = getLanguage().toUpperCase();
 }

@@ -1,10 +1,12 @@
 export const en = {
     header: {
         help: "Help",
-        language: "EN"
     },
 
-    loading: {},
+    loading: {
+        title: "Loading",
+        startGame: "Starting Game"
+    },
 
     setup: {},
 

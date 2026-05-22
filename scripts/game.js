@@ -62,7 +62,7 @@ export function startGame() {
     startLoadingTransition({
         targetScreen: SCREENS.GAME,
         duration: 1800,
-        label: "Starting Game"
+        label: "loading.startGame"
     });
 }
 

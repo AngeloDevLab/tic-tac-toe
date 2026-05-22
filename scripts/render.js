@@ -31,13 +31,17 @@ import {
     applyTranslations
 } from "./i18n/applyTranslations.js";
 
+import {
+    translate
+} from "./i18n/translate.js";
+
 let loadingTimer = null;
 
 export function initApp() {
     startLoadingTransition({
         targetScreen: SCREENS.SETUP,
         duration: 1400,
-        label: "loading"
+        label: "loading.title"
     });
 }
 
@@ -62,7 +66,7 @@ export function startLoadingTransition({ targetScreen, duration, label }) {
             );
 
         appState.loading.label =
-            `${label} ${".".repeat(
+            `${translate(label)} ${".".repeat(
                 (Math.floor(
                     appState.loading.progress / 20
                 ) % 3) + 1
