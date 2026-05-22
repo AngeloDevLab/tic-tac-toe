@@ -4,16 +4,27 @@ export const SCREENS = {
     GAME: "game"
 };
 
-export let gameState = {
+export const SUPPORTED_LANGUAGES = {
+    DE: "de",
+    EN: "en"
+};
+
+export let appState = {
+    language: SUPPORTED_LANGUAGES.EN,
     currentScreen: SCREENS.LOADING,
-    gameMode: null, // "classic" | "ultimate"
-    matchType: null, // "singleplayer" | "local" | "online"
+    loading: {
+        progress: 0,
+        label: "Loading"
+    }
+};
+
+export let gameState = {
+    gameMode: null,
+    matchType: null,
     currentPlayer: "cross",
     fields: Array(9).fill(null),
-    winner: null, // cross | circle
+    winner: null,
     winningCombination: null,
     isDraw: false,
     gameOver: false,
-    loadingProgress: 0,
-    loadingLabel: "Loading"
 };

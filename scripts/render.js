@@ -1,4 +1,8 @@
-import { gameState, SCREENS } from "./state.js";
+import {
+    appState,
+    gameState,
+    SCREENS
+} from "./state.js";
 
 import {
     getSetupTemplate,
@@ -27,31 +31,48 @@ export function initApp() {
 }
 
 export function navigateTo(screen) {
-    gameState.currentScreen = screen;
+    appState.currentScreen = screen;
     render();
 }
 
 export function startLoadingTransition({ targetScreen, duration, label}) {
     window.clearInterval(loadingTimer);
-    gameState.currentScreen = SCREENS.LOADING;
-    gameState.loadingProgress = 0;
+    appState.currentScreen = SCREENS.LOADING;
+    appState.loading.progress = 0;
     render();
-
     const intervalMs = 35;
     const step = Math.ceil(100 / (duration / intervalMs));
-
     loadingTimer = window.setInterval(() => {
-        gameState.loadingProgress = Math.min(100, gameState.loadingProgress + step);
-        gameState.loadingLabel = `${label} ${".".repeat((Math.floor(gameState.loadingProgress / 20) % 3) + 1)}`;
 
-        if (gameState.loadingProgress >= 100) {
-            window.clearInterval(loadingTimer);
-            gameState.currentScreen = targetScreen;
+        appState.loading.progress =
+            Math.min(
+                100,
+                appState.loading.progress + step
+            );
+
+        appState.loading.label =
+            `${label} ${".".repeat(
+                (Math.floor(
+                    appState.loading.progress / 20
+                ) % 3) + 1
+            )}`;
+
+        if (appState.loading.progress >= 100) {
+
+            window.clearInterval(
+                loadingTimer
+            );
+
+            appState.currentScreen =
+                targetScreen;
+
             render();
+
             return;
         }
 
         render();
+
     }, intervalMs);
 }
 
@@ -62,15 +83,15 @@ export function render() {
 }
 
 function getMainTemplate() {
-    if (gameState.currentScreen === SCREENS.LOADING) {
+    if (appState.currentScreen === SCREENS.LOADING) {
         return getLoadingTemplate();
     }
 
-    if (gameState.currentScreen === SCREENS.SETUP) {
+    if (appState.currentScreen === SCREENS.SETUP) {
         return getSetupTemplate();
     }
 
-    if (gameState.currentScreen === SCREENS.GAME) {
+    if (appState.currentScreen === SCREENS.GAME) {
         return getGameTemplate();
     }
 
@@ -84,8 +105,8 @@ function initGlobalEvents() {
         if (event.target.id === "help-overlay") closeHelpModal();
     });
 
-    if (gameState.currentScreen === SCREENS.SETUP) initSetupEvents();
-    if (gameState.currentScreen === SCREENS.GAME) initGameEvents();
+    if (appState.currentScreen === SCREENS.SETUP) initSetupEvents();
+    if (appState.currentScreen === SCREENS.GAME) initGameEvents();
 }
 
 function initSetupEvents() {

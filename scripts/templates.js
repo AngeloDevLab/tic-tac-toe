@@ -1,4 +1,7 @@
-import { gameState } from "./state.js";
+import {
+    appState,
+    gameState
+} from "./state.js";
 
 
 /**
@@ -11,9 +14,9 @@ export function getLoadingTemplate() {
         <section class="loading-screen">
             <div class="loading-card">
                 <h1 class="game-title">GameHub</h1>
-                <p class="loading-label">${gameState.loadingLabel} ${gameState.loadingProgress}%</p>
-                <div class="loading-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${gameState.loadingProgress}">
-                    <div class="loading-fill" style="width: ${gameState.loadingProgress}%;"></div>
+                <p class="loading-label">${appState.loading.label} ${appState.loading.progress}%</p>
+                <div class="loading-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${gameState.loadingProgress}"">
+                    <div class="loading-fill" style="width: ${appState.loading.progress}%"%;"></div>
                 </div>
 
             </div>
