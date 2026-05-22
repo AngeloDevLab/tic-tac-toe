@@ -1,5 +1,8 @@
 export const de = {
-    header: {},
+    header: {
+        help: "Hilfe",
+        language: "de"
+    },
 
     loading: {},
 
