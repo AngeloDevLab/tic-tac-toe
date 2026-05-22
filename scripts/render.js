@@ -20,6 +20,15 @@ import {
     goBackToSetup
 } from "./game.js";
 
+import {
+    getLanguage,
+    setLanguage
+} from "./i18n/language.js";
+
+import {
+    applyTranslations
+} from "./i18n/applyTranslations.js";
+
 let loadingTimer = null;
 
 export function initApp() {
@@ -101,6 +110,7 @@ function getMainTemplate() {
 function initGlobalEvents() {
     document.getElementById("help-btn")?.addEventListener("click", openHelpModal);
     document.getElementById("help-close-btn")?.addEventListener("click", closeHelpModal);
+    document.getElementById("language-btn")?.addEventListener("click", toggleLanguage);
     document.getElementById("help-overlay")?.addEventListener("click", (event) => {
         if (event.target.id === "help-overlay") closeHelpModal();
     });
@@ -146,4 +156,11 @@ function closeHelpModal() {
     helpBtn.focus();
     overlay.classList.remove("is-open");
     overlay.setAttribute("aria-hidden", "true");
+}
+
+function toggleLanguage() {
+    const nextLanguage = getLanguage() === "en" ? "de" : "en";
+    setLanguage(nextLanguage);
+    render();
+    applyTranslations();
 }

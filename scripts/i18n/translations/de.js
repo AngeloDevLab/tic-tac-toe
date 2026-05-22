@@ -1,7 +1,7 @@
 export const de = {
     header: {
         help: "Hilfe",
-        language: "de"
+        language: "DE"
     },
 
     loading: {},

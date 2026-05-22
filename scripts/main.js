@@ -1,12 +1,14 @@
 import { initApp } from "./render.js";
 import { getLanguage, setLanguage } from "./i18n/language.js";
 import { translate } from "./i18n/translate.js";
+import { applyTranslations } from "./i18n/applyTranslations.js";
 
-document.addEventListener("DOMContentLoaded", initApp);
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
-console.log(getLanguage());
-setLanguage("de");
-document.getElementById("help-btn").lastChild.textContent =
-    translate("header.help");
-console.log(getLanguage());
-console.log(translate("header.help"));
+        initApp();
+        applyTranslations();
+    }
+);
+
