@@ -22,7 +22,9 @@ import {
 
 import {
     getLanguage,
-    setLanguage
+    setLanguage,
+    saveLanguage,
+    updateLanguageButton
 } from "./i18n/language.js";
 
 import {
@@ -44,7 +46,7 @@ export function navigateTo(screen) {
     render();
 }
 
-export function startLoadingTransition({ targetScreen, duration, label}) {
+export function startLoadingTransition({ targetScreen, duration, label }) {
     window.clearInterval(loadingTimer);
     appState.currentScreen = SCREENS.LOADING;
     appState.loading.progress = 0;
@@ -89,6 +91,8 @@ export function render() {
     const app = document.getElementById("app-main");
     app.innerHTML = getMainTemplate();
     initGlobalEvents();
+    applyTranslations();
+    updateLanguageButton();
 }
 
 function getMainTemplate() {
@@ -161,6 +165,6 @@ function closeHelpModal() {
 function toggleLanguage() {
     const nextLanguage = getLanguage() === "en" ? "de" : "en";
     setLanguage(nextLanguage);
+    saveLanguage();
     render();
-    applyTranslations();
 }
