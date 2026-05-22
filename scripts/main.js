@@ -6,5 +6,7 @@ document.addEventListener("DOMContentLoaded", initApp);
 
 console.log(getLanguage());
 setLanguage("de");
+document.getElementById("help-btn").lastChild.textContent =
+    translate("header.help");
 console.log(getLanguage());
 console.log(translate("header.help"));
