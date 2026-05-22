@@ -1,7 +1,10 @@
 import { initApp } from "./render.js";
-import { appState, gameState } from "./state.js";
+import { getLanguage, setLanguage } from "./i18n/language.js";
 
 document.addEventListener("DOMContentLoaded", initApp);
 
-console.log(appState.language);
-console.log(gameState);
+console.log(getLanguage());
+
+setLanguage("de");
+
+console.log(getLanguage());
