@@ -5,7 +5,7 @@ export const SCREENS = {
 };
 
 export let gameState = {
-    currentScreen: SCREENS.LOADING_INITIAL,
+    currentScreen: SCREENS.LOADING,
     gameMode: null, // "classic" | "ultimate"
     matchType: null, // "singleplayer" | "local" | "online"
     currentPlayer: "cross",

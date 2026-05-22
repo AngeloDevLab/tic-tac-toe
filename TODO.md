@@ -1,6 +1,6 @@
 # TODO
 
-## Phase 1 — Classic Foundation
+## Phase 1 — Classic MVP (Current) V0.1.0
 
 ### Core Gameplay
 - [x] Render classic board
@@ -10,59 +10,122 @@
 - [x] Add draw detection
 - [x] Add restart game
 
-### UI & Layout
-- [x] Create header component
+### UI & UX V0.2.0
+- [x] Create header
+- [x] Create footer
 - [x] Add navigation flow
+- [x] Add loading screen
 - [x] Add screen transitions
-- [ ] Create footer component
-- [ ] Improve setup layout
-- [ ] Improve game layout
-- [ ] Improve responsive layout
-- [ ] Polish button system
-
-### UX
-- [x] Create help overlay
-- [x] Add back button system
-- [ ] Add loading screen polish
-- [ ] Add hover animations
+- [x] Add help modal
+- [x] Add back button flow
+- [x] Improve setup layout
+- [x] Improve game layout
+- [x] Improve responsive design
+- [x] Polish button system
 - [ ] Add winner animations
 
 ### Architecture
-- [ ] Improve render flow
-- [ ] Clean template structure
+- [x] Reorganize file naming
+- [ ] Improve render structure
 - [ ] Improve state structure
-- [ ] Add translation system
+- [ ] Clean template structure
 - [ ] Add JSDoc documentation
 
-## Phase 2 — Singleplayer AI
+---
 
+## Phase 2 — Internationalization (i18n) V0.3.0
+
+### Translation Foundation
+- [ ] Create i18n folder structure
+- [ ] Create language files (de / en)
+- [ ] Add translation helper (`t()`)
+- [ ] Add missing-key fallback
+
+### State Integration
+- [ ] Add language state
+- [ ] Detect browser language
+- [ ] Add persistence via localStorage
+
+### UI Migration
+- [ ] Translate landing screen
+- [ ] Translate setup screen
+- [ ] Translate game screen
+- [ ] Translate help modal
+- [ ] Translate loading screen
+
+### UX
+- [ ] Add language switch
+- [ ] Add rerender on language change
+
+### Validation
+- [ ] Test missing translations
+- [ ] Verify persistence
+- [ ] Verify mobile layout
+
+---
+
+## Phase 3 — Singleplayer
+
+### Easy V0.4.0
 - [ ] Create random AI
-- [ ] Add basic AI turns
+- [ ] Add AI turn flow
+
+### Medium
 - [ ] Add move evaluation
-- [ ] Improve AI difficulty
+- [ ] Add win blocking
 
-## Phase 3 — Online Multiplayer
+### Hard V0.5.0
+- [ ] Implement minimax
+- [ ] Add difficulty selection
 
+---
+
+## Phase 4 — Ultimate Tic Tac Toe V0.6.0
+
+### Core System
+- [ ] Create nested board state
+- [ ] Render ultimate board
+- [ ] Add active board rules
+- [ ] Add local ultimate gameplay
+
+### Game Logic
+- [ ] Add mini-board winner detection
+- [ ] Add global winner detection
+- [ ] Update restart flow
+
+### Modes V0.7.0
+- [ ] Add ultimate singleplayer
+
+---
+
+## Phase 5 — Online Multiplayer V0.8.0
+
+### Foundation
 - [ ] Evaluate backend solution
+- [ ] Create multiplayer architecture
+
+### Gameplay
 - [ ] Create room system
 - [ ] Add invite code system
 - [ ] Sync game state
 - [ ] Handle reconnects
 
-## Phase 4 — Ultimate Tic Tac Toe
+### Expansion
+- [ ] Add ultimate multiplayer
+- [ ] Add online state recovery
 
-- [ ] Create nested board structure
-- [ ] Render ultimate board
-- [ ] Add active board logic
-- [ ] Add mini-board winner detection
-- [ ] Add global winner detection
-- [ ] Update AI for ultimate mode
-- [ ] Update multiplayer sync
+---
 
-## Phase 5 — Polish & Expansion
+## Phase 6 — Polish & Expansion V0.9.0
 
+### Experience
 - [ ] Add sound effects
 - [ ] Add themes
+- [ ] Add statistics
 - [ ] Add match history
 - [ ] Add replay system
+
+### Long Term
 - [ ] Add ranked mode
+- [ ] Add achievements
+- [ ] Add settings screen
