@@ -24,9 +24,24 @@ export const de = {
         noSelection: "Keine Auswahl"
     },
 
-    game: {},
+    game: {
+        back: "Zurück",
+        currentPlayer: "Aktiver Spieler",
+        winner: "gewinnt das Spiel!",
+        draw: "Unentschieden - kein Gewinner.",
+        restart: "Neustart"
+    },
 
-    footer: {},
+    footer: {
+        imprint: "Impressum",
+        privacy: "Datenschutz"
+    },
 
-    help: {}
+    help: {
+        title: "Spielanleitung",
+        setup: "Wähle Spielmodus und Spielart bevor du startest.",
+        goal: "Bringe drei Symbole in eine Reihe um zu gewinnen.",
+        draw: "Ist das Spielfeld voll und niemand gewinnt, endet das Spiel unentschieden.",
+        close: "Schließen"
+    }
 };

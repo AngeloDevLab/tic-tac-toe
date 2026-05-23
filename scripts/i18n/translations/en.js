@@ -24,9 +24,24 @@ export const en = {
         noSelection: "No selection"
     },
 
-    game: {},
+    game: {
+        back: "Back",
+        currentPlayer: "Current Player",
+        winner: "wins the game!",
+        draw: "Draw - no winner.",
+        restart: "Restart"
+    },
 
-    footer: {},
+    footer: {
+        imprint: "Imprint",
+        privacy: "Privacy"
+    },
 
-    help: {}
+    help: {
+        title: "How to Play",
+        setup: "Choose a game mode and match type before starting the game.",
+        goal: "Match three symbols in a row to win the game.",
+        draw: "If the board is full and nobody wins, the match ends in a draw.",
+        close:"Close"
+    }
 };

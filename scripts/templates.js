@@ -55,20 +55,20 @@ export function getSetupTemplate() {
 
                         <div class="button-group">
                             ${renderSelectableButton(
-                                translate("setup.classic"),
-                                "classic",
-                                gameState.gameMode === "classic",
-                                "mode",
-                                false
-                            )}
+        translate("setup.classic"),
+        "classic",
+        gameState.gameMode === "classic",
+        "mode",
+        false
+    )}
 
                             ${renderSelectableButton(
-                                translate("setup.ultimate"),
-                                "ultimate",
-                                gameState.gameMode === "ultimate",
-                                "mode", 
-                                true
-                            )}
+        translate("setup.ultimate"),
+        "ultimate",
+        gameState.gameMode === "ultimate",
+        "mode",
+        true
+    )}
                         </div>
                     </div>
 
@@ -77,28 +77,28 @@ export function getSetupTemplate() {
 
                         <div class="button-group">
                             ${renderSelectableButton(
-                                translate("setup.singleplayer"),
-                                "singleplayer",
-                                gameState.matchType === "singleplayer",
-                                "match",
-                                true
-                            )}
+        translate("setup.singleplayer"),
+        "singleplayer",
+        gameState.matchType === "singleplayer",
+        "match",
+        true
+    )}
 
                             ${renderSelectableButton(
-                                translate("setup.local"),
-                                "local",
-                                gameState.matchType === "local",
-                                "match",
-                                false
-                            )}
+        translate("setup.local"),
+        "local",
+        gameState.matchType === "local",
+        "match",
+        false
+    )}
 
                             ${renderSelectableButton(
-                                translate("setup.online"),
-                                "online",
-                                gameState.matchType === "online",
-                                "match",
-                                true
-                            )}
+        translate("setup.online"),
+        "online",
+        gameState.matchType === "online",
+        "match",
+        true
+    )}
                         </div>
                     </div>
 
@@ -167,7 +167,7 @@ export function getGameTemplate() {
                         <button
                             id="back-to-setup-btn"
                             class="btn btn-secondary">
-                            Back
+                            ${translate("game.back")}
                         </button>
                     </div>
 
@@ -235,14 +235,17 @@ function renderSymbol(symbol) {
 function renderGameStatus() {
 
     if (gameState.winner) {
-        return `<p class="game-status">${renderSymbol(gameState.winner)} wins the game!</p>`;
+        return `<p class="game-status">${renderSymbol(gameState.winner)}${translate("game.winner")} </p>`;
     }
 
     if (gameState.isDraw) {
-        return `<p class="game-status">Draw - no winner.</p>`;
+        return `<p class="game-status">${translate("game.draw")}</p>`;
     }
 
-    return `<p class="game-status">Current Player: ${renderSymbol(gameState.currentPlayer)}</p>`;
+    return `<p class="game-status">           
+                ${translate("game.currentPlayer")}:
+                ${renderSymbol(gameState.currentPlayer)}
+            </p>`;
 }
 
 
@@ -254,7 +257,7 @@ function renderGameStatus() {
  */
 function renderRestartButton() {
     if (!gameState.gameOver) return "";
-    return `<button id="restart-btn" class="btn btn-primary">Restart</button>`;
+    return `<button id="restart-btn" class="btn btn-primary">${translate("game.restart")}</button>`;
 }
 
 
