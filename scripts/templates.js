@@ -3,6 +3,8 @@ import {
     gameState
 } from "./state.js";
 
+import { translate } from "./i18n/translate.js";
+
 
 /**
  * Returns the loading screen template.
@@ -40,18 +42,20 @@ export function getSetupTemplate() {
                 <div class="setup-panel">
 
                     <div class="setup-header">
-                        <h1 class="game-title">Tic Tac Toe</h1>
+                        <h1 class="game-title">
+                            Tic Tac Toe
+                        </h1>
                         <p class="game-subtitle">
-                            Choose your game mode and match type
+                            ${translate("setup.subtitle")}
                         </p>
                     </div>
 
                     <div class="selection-group">
-                        <h3>Game Mode</h3>
+                        <h3>${translate("setup.gameMode")}</h3>
 
                         <div class="button-group">
                             ${renderSelectableButton(
-                                "Classic",
+                                translate("setup.classic"),
                                 "classic",
                                 gameState.gameMode === "classic",
                                 "mode",
@@ -59,7 +63,7 @@ export function getSetupTemplate() {
                             )}
 
                             ${renderSelectableButton(
-                                "Ultimate (WIP)",
+                                translate("setup.ultimate"),
                                 "ultimate",
                                 gameState.gameMode === "ultimate",
                                 "mode", 
@@ -69,11 +73,11 @@ export function getSetupTemplate() {
                     </div>
 
                     <div class="selection-group">
-                        <h3>Match Type</h3>
+                        <h3>${translate("setup.matchType")}</h3>
 
                         <div class="button-group">
                             ${renderSelectableButton(
-                                "Singleplayer (WIP)",
+                                translate("setup.singleplayer"),
                                 "singleplayer",
                                 gameState.matchType === "singleplayer",
                                 "match",
@@ -81,7 +85,7 @@ export function getSetupTemplate() {
                             )}
 
                             ${renderSelectableButton(
-                                "Local Multiplayer",
+                                translate("setup.local"),
                                 "local",
                                 gameState.matchType === "local",
                                 "match",
@@ -89,7 +93,7 @@ export function getSetupTemplate() {
                             )}
 
                             ${renderSelectableButton(
-                                "Online Multiplayer (WIP)",
+                                translate("setup.online"),
                                 "online",
                                 gameState.matchType === "online",
                                 "match",
@@ -103,15 +107,15 @@ export function getSetupTemplate() {
                 <aside class="summary-panel">
 
                     <div class="selection-summary">
-                        <h3>Current Selection</h3>
+                        <h3>${translate("setup.currentSelection")}</h3>
 
                         <p>
-                            <strong>Mode:</strong>
+                            <strong>${translate("setup.selectedMode")}:</strong>
                             ${formatSelectedValue(gameState.gameMode)}
                         </p>
 
                         <p>
-                            <strong>Match:</strong>
+                            <strong>${translate("setup.selectedMatch")}:</strong>
                             ${formatSelectedValue(gameState.matchType)}
                         </p>
                     </div>
@@ -121,7 +125,7 @@ export function getSetupTemplate() {
                         class="btn btn-primary "
                         ${!canStart() ? "disabled" : ""}
                     >
-                        Start Game
+                        ${translate("setup.start")}
                     </button>
 
                 </aside>
@@ -298,16 +302,8 @@ function getWinLineClass() {
  * @returns {string}
  */
 function formatSelectedValue(value) {
-    if (!value) return "No selection";
-    const labelMap = {
-        classic: "Classic",
-        ultimate: "Ultimate",
-        singleplayer: "Singleplayer",
-        local: "Local Multiplayer",
-        online: "Online Multiplayer"
-    };
-
-    return labelMap[value] ?? value;
+    if (!value) { return translate("setup.noSelection"); }
+    return translate(`setup.${value}`);
 }
 
 
