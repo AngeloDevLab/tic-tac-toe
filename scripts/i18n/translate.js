@@ -8,7 +8,6 @@ const translations = {
 };
 
 export function translate(key) {
-
     const language = getLanguage();
 
     const translation =

@@ -10,7 +10,6 @@
   min-height: calc(100dvh - 4rem);
 }
 
-
 @media (min-width: 400px) {
   .hide-on-mobile {
     display: block;

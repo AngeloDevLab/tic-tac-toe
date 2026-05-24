@@ -40,4 +40,8 @@
     /* ===== BUTTON SIZE ===== */
     --button-width: 240px;
     --button-height: 2rem;
+
+    /* ===== INPUT ===== */
+    --input-height: 2.5rem;
+    --input-padding: 0 1rem;
 }

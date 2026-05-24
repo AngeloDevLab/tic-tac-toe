@@ -21,10 +21,16 @@ export let appState = {
 export let gameState = {
     gameMode: null,
     matchType: null,
+
+    player: [],
+    starterPlayer: null,
     currentPlayer: "cross",
+
     fields: Array(9).fill(null),
+
     winner: null,
     winningCombination: null,
+    
     isDraw: false,
     gameOver: false,
 };

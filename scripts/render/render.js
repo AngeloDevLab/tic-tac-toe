@@ -2,13 +2,13 @@ import {
     appState,
     gameState,
     SCREENS
-} from "./state.js";
+} from "../state.js";
 
 import {
     getSetupTemplate,
     getLoadingTemplate,
-    getGameTemplate,
-} from "./templates.js";
+    getGameTemplate
+} from "./templates/index.js";
 
 import {
     selectGameMode,
@@ -18,22 +18,22 @@ import {
     canStartGame,
     startGame,
     goBackToSetup
-} from "./game.js";
+} from "../game.js";
 
 import {
     getLanguage,
     setLanguage,
     saveLanguage,
     updateLanguageButton
-} from "./i18n/language.js";
+} from "../i18n/language.js";
 
 import {
     applyTranslations
-} from "./i18n/applyTranslations.js";
+} from "../i18n/applyTranslations.js";
 
 import {
     translate
-} from "./i18n/translate.js";
+} from "../i18n/translate.js";
 
 let loadingTimer = null;
 

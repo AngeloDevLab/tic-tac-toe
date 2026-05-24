@@ -1,6 +1,6 @@
 # TODO
 
-## Phase 1 — Classic MVP (Current) V0.1.0
+## Phase 1 — Classic MVP V0.1.0
 
 ### Core Gameplay
 - [x] Render classic board
@@ -25,7 +25,7 @@
 - [ ] Add winner animations
 
 ### Architecture
-- [x] Reorganize file naming
+- [ ] Reorganize file naming
 - [ ] Improve render structure
 - [ ] Improve state structure
 - [ ] Clean template structure
@@ -36,37 +36,65 @@
 ## Phase 2 — Internationalization (i18n) V0.3.0
 
 ### Translation Foundation
-- [ ] Create i18n folder structure
-- [ ] Create language files (de / en)
-- [ ] Add translation helper (`t()`)
-- [ ] Add missing-key fallback
+- [x] Create i18n folder structure
+- [x] Create language files (de / en)
+- [x] Add translation helper (`translate()`)
+- [x] Add missing-key fallback
 
 ### State Integration
-- [ ] Add language state
-- [ ] Detect browser language
-- [ ] Add persistence via localStorage
+- [x] Add language state
+- [x] Detect browser language
+- [x] Add persistence via localStorage
 
 ### UI Migration
-- [ ] Translate landing screen
-- [ ] Translate setup screen
-- [ ] Translate game screen
-- [ ] Translate help modal
-- [ ] Translate loading screen
+- [x] Translate landing screen
+- [x] Translate setup screen
+- [x] Translate game screen
+- [x] Translate help modal
+- [x] Translate loading screen
 
 ### UX
-- [ ] Add language switch
-- [ ] Add rerender on language change
+- [x] Add language switch
+- [x] Add rerender on language change
 
 ### Validation
-- [ ] Test missing translations
-- [ ] Verify persistence
-- [ ] Verify mobile layout
+- [x] Test missing translations
+- [x] Verify persistence
+- [x] Verify mobile layout
 
 ---
 
-## Phase 3 — Singleplayer
+## Phase 3 — Match Configuration V0.4.0
 
-### Easy V0.4.0
+### Match Setup
+- [ ] Add player configuration
+- [ ] Add dynamic setup sections
+- [ ] Add player name inputs
+- [ ] Add player defaults
+- [ ] Add AI difficulty selection
+
+### Gameplay UI
+- [ ] Replace turn indicator
+- [ ] Add player overview panels
+- [ ] Show player names
+- [ ] Highlight active player
+
+### Match Flow
+- [ ] Add starter selection animation
+- [ ] Randomize first starter
+- [ ] Preserve starter on draw
+- [ ] Show starter announcement
+- [ ] Start next round with previous loser
+
+### UX
+- [ ] Extend help modal
+- [ ] Add input validation
+
+---
+
+## Phase 4 — Singleplayer  V0.5.0
+
+### Easy 
 - [ ] Create random AI
 - [ ] Add AI turn flow
 
@@ -76,11 +104,10 @@
 
 ### Hard V0.5.0
 - [ ] Implement minimax
-- [ ] Add difficulty selection
 
 ---
 
-## Phase 4 — Ultimate Tic Tac Toe V0.6.0
+## Phase 5 — Ultimate Tic Tac Toe V0.6.0
 
 ### Core System
 - [ ] Create nested board state
@@ -98,7 +125,7 @@
 
 ---
 
-## Phase 5 — Online Multiplayer V0.8.0
+## Phase 6 — Online Multiplayer V0.8.0
 
 ### Foundation
 - [ ] Evaluate backend solution
@@ -116,7 +143,7 @@
 
 ---
 
-## Phase 6 — Polish & Expansion V0.9.0
+## Phase 7 — Polish & Expansion V0.9.0
 
 ### Experience
 - [ ] Add sound effects

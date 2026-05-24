@@ -20,8 +20,17 @@ export const de = {
         currentSelection: "Aktuelle Auswahl",
         selectedMode: "Modus",
         selectedMatch: "Spielart",
+        matchConfiguration: "Spieler",
         start: "Spiel starten",
-        noSelection: "Keine Auswahl"
+        noSelection: "Keine Auswahl",
+        playerOne: "Spieler 1",
+        playerTwo: "Spieler 2",
+        you: "Du",
+        opponent: "Gegner",
+        difficulty: "Schwierigkeit",
+        easy: "Leicht",
+        medium: "Mittel",
+        hard: "Schwer"
     },
 
     game: {

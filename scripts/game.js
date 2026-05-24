@@ -1,5 +1,5 @@
 import { gameState, SCREENS } from "./state.js";
-import { render, startLoadingTransition, navigateTo } from "./render.js";
+import { render, startLoadingTransition, navigateTo } from "./render/render.js";
 
 
 /**

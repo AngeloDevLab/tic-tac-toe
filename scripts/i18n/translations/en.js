@@ -20,8 +20,17 @@ export const en = {
         currentSelection: "Current Selection",
         selectedMode: "Mode",
         selectedMatch: "Match",
+        matchConfiguration: "Players",
         start: "Start Game",
-        noSelection: "No selection"
+        noSelection: "No selection",
+        playerOne: "Player 1",
+        playerTwo: "Player 2",
+        you: "You",
+        opponent: "Opponent",
+        difficulty: "Difficulty",
+        easy: "Easy",
+        medium: "Medium",
+        hard: "Hard"
     },
 
     game: {
@@ -42,6 +51,6 @@ export const en = {
         setup: "Choose a game mode and match type before starting the game.",
         goal: "Match three symbols in a row to win the game.",
         draw: "If the board is full and nobody wins, the match ends in a draw.",
-        close:"Close"
+        close: "Close"
     }
 };

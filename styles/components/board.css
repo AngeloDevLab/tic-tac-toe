@@ -227,7 +227,7 @@
   }
 }
 
-@media (min-width: 854px) {
+@media (min-width: 864px) {
 
     .game-container {
         grid-template-columns: 2fr 1fr;
