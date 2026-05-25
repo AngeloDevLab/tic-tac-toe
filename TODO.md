@@ -71,7 +71,6 @@
 - [x] Add dynamic setup sections
 - [x] Add player name inputs
 - [x] Add player defaults
-- [x] Add AI difficulty selection
 
 ### Gameplay UI
 - [x] Replace turn indicator

@@ -52,6 +52,16 @@ export function navigateTo(screen) {
     render();
 }
 
+
+/**
+ * Shows the loading screen
+ * before navigating to another screen.
+ *
+ * @param {object} options - Loading transition options.
+ * @param {string} options.targetScreen - Screen shown after loading.
+ * @param {number} options.duration - Transition duration in milliseconds.
+ * @param {string} options.label - Translation key for the loading label.
+ */
 export function startLoadingTransition({ targetScreen, duration, label }) {
     window.clearInterval(loadingTimer);
     appState.currentScreen = SCREENS.LOADING;
@@ -93,6 +103,11 @@ export function startLoadingTransition({ targetScreen, duration, label }) {
     }, intervalMs);
 }
 
+
+/**
+ * Renders the current screen
+ * and initializes UI behavior.
+ */
 export function render() {
     const app = document.getElementById("app-main");
     app.innerHTML = getMainTemplate();
@@ -101,6 +116,13 @@ export function render() {
     updateLanguageButton();
 }
 
+
+/**
+ * Returns the template for
+ * the current app screen.
+ *
+ * @returns {string} HTML template.
+ */
 function getMainTemplate() {
     if (appState.currentScreen === SCREENS.LOADING) {
         return getLoadingTemplate();

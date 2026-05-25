@@ -125,7 +125,12 @@ export function getSetupTemplate() {
 }
 
 
-
+/**
+ * Returns the player setup template
+ * for the selected match type.
+ *
+ * @returns {string} HTML player configuration template.
+ */
 export function getPlayerConfigurationTemplate() {
 
     switch (gameState.matchType) {

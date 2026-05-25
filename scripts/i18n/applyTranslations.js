@@ -1,5 +1,10 @@
 import { translate } from "./translate.js";
 
+
+/**
+ * Applies translated text
+ * to all elements with data-i18n.
+ */
 export function applyTranslations() {
     const elements = document.querySelectorAll("[data-i18n]");
 

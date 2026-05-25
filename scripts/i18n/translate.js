@@ -7,6 +7,15 @@ const translations = {
     en
 };
 
+
+/**
+ * Resolves a translation key
+ * for the active language.
+ *
+ * @param {string} key - Dot-separated translation key.
+ *
+ * @returns {string} Translated text or missing-key label.
+ */
 export function translate(key) {
     const language = getLanguage();
 

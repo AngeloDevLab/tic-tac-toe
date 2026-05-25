@@ -178,6 +178,11 @@ function resetGameState() {
     gameState.gameOver = false;
 }
 
+
+/**
+ * Resets player names and symbols
+ * to their default values.
+ */
 export function resetPlayerState() {
     gameState.players = [
         {
@@ -201,11 +206,23 @@ export function restartGame() {
     render();
 }
 
+
+/**
+ * Updates a player's display name.
+ *
+ * @param {string} playerId - Input identifier of the player.
+ * @param {string} value - New player name value.
+ */
 export function updatePlayerName(playerId, value) {
     const index = playerId === "player-one" ? 0 : 1;
     gameState.players[index].name = createPlayerName(value, translate(`setup.player${index + 1}`));
 }
 
+
+/**
+ * Initializes empty player names
+ * with translated fallback values.
+ */
 function initializePlayerNames() {
     gameState.players.forEach(
         (player, index) => {
