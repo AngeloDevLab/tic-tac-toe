@@ -39,9 +39,9 @@
 
 .game-header {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-xs);
 }
 
 .cell {
@@ -87,6 +87,49 @@
   gap: 0.75rem;
 }
 
+.player-panel {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: 2px var(--spacing-xs);
+    border: 2px solid var(--color-border);
+    border-radius: var(--border-radius);
+    background: var(--color-surface);
+    transition:
+        border-color 180ms ease,
+        transform 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.player-panel.is-active {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgb(56 189 248 / 18%);
+}
+
+.player-symbol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    flex-shrink: 0;
+}
+
+.player-symbol img {
+    width: 100%;
+    height: 100%;
+}
+
+.player-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.player-name {
+    font-size: 1rem;
+    font-weight: 600;
+}
 
 .win-line {
   position: absolute;

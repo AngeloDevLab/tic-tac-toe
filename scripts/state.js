@@ -22,7 +22,16 @@ export let gameState = {
     gameMode: null,
     matchType: null,
 
-    player: [],
+    players: [
+        {
+            name: "",
+            symbol: "cross"
+        },
+        {
+            name: "",
+            symbol: "circle"
+        }
+    ],
     starterPlayer: null,
     currentPlayer: "cross",
 
@@ -30,7 +39,7 @@ export let gameState = {
 
     winner: null,
     winningCombination: null,
-    
+
     isDraw: false,
     gameOver: false,
 };

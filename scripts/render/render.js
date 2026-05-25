@@ -18,7 +18,7 @@ import {
     canStartGame,
     startGame,
     goBackToSetup
-} from "../game.js";
+} from "../game/game.js";
 
 import {
     getLanguage,
@@ -34,6 +34,8 @@ import {
 import {
     translate
 } from "../i18n/translate.js";
+
+import { updatePlayerName } from "../game/game.js";
 
 let loadingTimer = null;
 
@@ -138,6 +140,15 @@ function initSetupEvents() {
 
     document.getElementById("start-game-btn")?.addEventListener("click", () => {
         if (canStartGame()) startGame();
+    });
+
+    document.querySelectorAll("[data-player]").forEach((input) => {
+        input.addEventListener("input", () => {
+            updatePlayerName(
+                input.dataset.player,
+                input.value
+            );
+        });
     });
 }
 

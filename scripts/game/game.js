@@ -1,6 +1,21 @@
-import { gameState, SCREENS } from "./state.js";
-import { render, startLoadingTransition, navigateTo } from "./render/render.js";
+import {
+    gameState,
+    SCREENS
+} from "../state.js";
 
+import {
+    render,
+    startLoadingTransition,
+    navigateTo
+} from "../render/render.js";
+
+import {
+    createPlayerName
+} from "./players.js";
+
+import {
+    translate
+} from "../i18n/translate.js";
 
 /**
  * All possible winning
@@ -57,8 +72,8 @@ export function canStartGame() {
  */
 export function startGame() {
     if (!canStartGame()) return;
-
     resetGameState();
+    initializePlayerNames();
     startLoadingTransition({
         targetScreen: SCREENS.GAME,
         duration: 1800,
@@ -72,6 +87,7 @@ export function startGame() {
  * and navigates back to the setup screen.
  */
 export function goBackToSetup() {
+    resetPlayerState();
     resetGameState();
     navigateTo(SCREENS.SETUP);
 }
@@ -162,6 +178,19 @@ function resetGameState() {
     gameState.gameOver = false;
 }
 
+export function resetPlayerState() {
+    gameState.players = [
+        {
+            name: "",
+            symbol: "cross"
+        },
+        {
+            name: "",
+            symbol: "circle"
+        }
+    ];
+}
+
 
 /**
  * Restarts the game
@@ -170,4 +199,26 @@ function resetGameState() {
 export function restartGame() {
     resetGameState();
     render();
+}
+
+export function updatePlayerName(playerId, value) {
+    const index = playerId === "player-one" ? 0 : 1;
+    gameState.players[index].name = createPlayerName(value, translate(`setup.player${index + 1}`));
+}
+
+function initializePlayerNames() {
+    gameState.players.forEach(
+        (player, index) => {
+            player.name =
+                createPlayerName(
+                    player.name,
+                    translate(
+                        index === 0
+                            ? "setup.playerOne"
+                            : "setup.playerTwo"
+                    )
+                );
+        }
+    );
+
 }

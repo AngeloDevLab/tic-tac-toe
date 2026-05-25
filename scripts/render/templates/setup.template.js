@@ -2,7 +2,7 @@ import { gameState } from "../../state.js";
 import { translate } from "../../i18n/translate.js";
 import { renderSelectableButton } from "./components/button.template.js";
 import { getPlayerInput } from "./components/player.template.js";
-import { canStartGame } from "../../game.js";
+import { canStartGame } from "../../game/game.js";
 
 
 /**
@@ -152,14 +152,16 @@ function getSingleplayerSetup() {
             ${getPlayerInput({
                 id: "player-one",
                 label: translate("setup.playerOne"),
-                placeholder: translate("setup.you")
+                placeholder: translate("setup.you"),
+                symbol: "cross"
             })}
 
             ${getPlayerInput({
                 id: "player-two",
                 label: translate("setup.playerTwo"),
                 value: `${translate("setup.opponent")} (${translate("setup.easy")})`,
-                disabled: true
+                disabled: true,
+                symbol: "circle"
             })}
 
             <h4>
@@ -205,13 +207,15 @@ function getLocalSetup() {
             ${getPlayerInput({
                 id: "player-one",
                 label: translate("setup.playerOne"),
-                placeholder: translate("setup.playerOne")
+                placeholder: translate("setup.playerOne"),
+                symbol: "cross"
             })}
 
             ${getPlayerInput({
                 id: "player-two",
                 label: translate("setup.playerTwo"),
-                placeholder: translate("setup.playerTwo")
+                placeholder: translate("setup.playerTwo"),
+                symbol: "circle"
             })}
 
         </div>

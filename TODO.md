@@ -67,17 +67,17 @@
 ## Phase 3 — Match Configuration V0.4.0
 
 ### Match Setup
-- [ ] Add player configuration
-- [ ] Add dynamic setup sections
-- [ ] Add player name inputs
-- [ ] Add player defaults
-- [ ] Add AI difficulty selection
+- [x] Add player configuration
+- [x] Add dynamic setup sections
+- [x] Add player name inputs
+- [x] Add player defaults
+- [x] Add AI difficulty selection
 
 ### Gameplay UI
-- [ ] Replace turn indicator
-- [ ] Add player overview panels
-- [ ] Show player names
-- [ ] Highlight active player
+- [x] Replace turn indicator
+- [x] Add player overview panels
+- [x] Show player names
+- [x] Highlight active player
 
 ### Match Flow
 - [ ] Add starter selection animation

@@ -25,6 +25,7 @@ export function getGameTemplate() {
                 <div class="game-panel">
 
                     <div class="game-header">
+                        ${renderPlayerPanels()}
                         ${renderGameStatus()}
                     </div>
 
@@ -77,10 +78,7 @@ function renderGameStatus() {
         return `<p class="game-status">${translate("game.draw")}</p>`;
     }
 
-    return `<p class="game-status">           
-                ${translate("game.currentPlayer")}:
-                ${renderSymbol(gameState.currentPlayer)}
-            </p>`;
+    return "";
 }
 
 
@@ -128,4 +126,25 @@ function getWinLineClass() {
 function renderRestartButton() {
     if (!gameState.gameOver) return "";
     return `<button id="restart-btn" class="btn btn-primary">${translate("game.restart")}</button>`;
+}
+
+
+function renderPlayerPanels() {
+
+    return gameState.players
+        .map((player) => `
+            <div class=" player-panel ${player.symbol === gameState.currentPlayer ? "is-active" : ""}">
+                <div class="player-symbol">
+                    ${renderSymbol(player.symbol)}
+                </div>
+
+                <div class="player-info">
+                    <span class="player-name">
+                        ${player.name}
+                    </span>
+                </div>
+            </div>
+        `)
+
+        .join("");
 }
