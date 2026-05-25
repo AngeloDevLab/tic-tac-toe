@@ -4,11 +4,13 @@ import {
     SCREENS
 } from "../state.js";
 
+
 import {
     getSetupTemplate,
     getLoadingTemplate,
     getGameTemplate
 } from "./templates/index.js";
+
 
 import {
     selectGameMode,
@@ -17,8 +19,10 @@ import {
     restartGame,
     canStartGame,
     startGame,
-    goBackToSetup
+    goBackToSetup,
+    updatePlayerName
 } from "../game/game.js";
+
 
 import {
     getLanguage,
@@ -27,17 +31,19 @@ import {
     updateLanguageButton
 } from "../i18n/language.js";
 
+
 import {
     applyTranslations
 } from "../i18n/applyTranslations.js";
+
 
 import {
     translate
 } from "../i18n/translate.js";
 
-import { updatePlayerName } from "../game/game.js";
 
 let loadingTimer = null;
+
 
 export function initApp() {
     startLoadingTransition({
@@ -46,6 +52,7 @@ export function initApp() {
         label: "loading.title"
     });
 }
+
 
 export function navigateTo(screen) {
     appState.currentScreen = screen;
@@ -85,14 +92,8 @@ export function startLoadingTransition({ targetScreen, duration, label }) {
             )}`;
 
         if (appState.loading.progress >= 100) {
-
-            window.clearInterval(
-                loadingTimer
-            );
-
-            appState.currentScreen =
-                targetScreen;
-
+            window.clearInterval(loadingTimer);
+            appState.currentScreen = targetScreen;
             render();
 
             return;
@@ -139,6 +140,7 @@ function getMainTemplate() {
     return "";
 }
 
+
 function initGlobalEvents() {
     document.getElementById("help-btn")?.addEventListener("click", openHelpModal);
     document.getElementById("help-close-btn")?.addEventListener("click", closeHelpModal);
@@ -150,6 +152,7 @@ function initGlobalEvents() {
     if (appState.currentScreen === SCREENS.SETUP) initSetupEvents();
     if (appState.currentScreen === SCREENS.GAME) initGameEvents();
 }
+
 
 function initSetupEvents() {
     document.querySelectorAll("[data-mode]").forEach((button) => {
@@ -174,6 +177,7 @@ function initSetupEvents() {
     });
 }
 
+
 function initGameEvents() {
     document.querySelectorAll(".cell").forEach((cell) => {
         cell.addEventListener("click", () => handleCellClick(Number(cell.dataset.index)));
@@ -181,7 +185,9 @@ function initGameEvents() {
 
     document.getElementById("restart-btn")?.addEventListener("click", restartGame);
     document.getElementById("back-to-setup-btn")?.addEventListener("click", goBackToSetup);
+    document.getElementById("starter-confirm-btn")?.addEventListener("click", confirmStarter);
 }
+
 
 function openHelpModal() {
     const overlay = document.getElementById("help-overlay");
@@ -191,6 +197,7 @@ function openHelpModal() {
     closeBtn.focus();
 }
 
+
 function closeHelpModal() {
     const overlay = document.getElementById("help-overlay");
     const helpBtn = document.getElementById("help-btn");
@@ -199,9 +206,16 @@ function closeHelpModal() {
     overlay.setAttribute("aria-hidden", "true");
 }
 
+
 function toggleLanguage() {
     const nextLanguage = getLanguage() === "en" ? "de" : "en";
     setLanguage(nextLanguage);
     saveLanguage();
+    render();
+}
+
+export function confirmStarter() {
+    gameState.currentPlayer = gameState.starterPlayer;
+    appState.starterSelection.visible = false;
     render();
 }

@@ -1,6 +1,7 @@
 import { gameState } from "../../state.js";
 import { translate } from "../../i18n/translate.js";
 import { renderSymbol } from "./components/symbol.template.js";
+import { getStarterTemplate } from "./components/starter.template.js";
 
 /**
  * Returns the active game screen template.
@@ -40,6 +41,8 @@ export function getGameTemplate() {
 
                 </div>
             </div>
+
+            ${getStarterTemplate()}
 
         </section>
     `;

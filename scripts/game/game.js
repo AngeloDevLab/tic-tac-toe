@@ -1,4 +1,5 @@
 import {
+    appState,
     gameState,
     SCREENS
 } from "../state.js";
@@ -16,6 +17,10 @@ import {
 import {
     translate
 } from "../i18n/translate.js";
+
+
+const STARTER_ANIMATION_TIME = 2500;
+
 
 /**
  * All possible winning
@@ -79,6 +84,11 @@ export function startGame() {
         duration: 1800,
         label: "loading.startGame"
     });
+
+    window.setTimeout(
+        chooseStarter,
+        1800
+    );
 }
 
 
@@ -171,7 +181,7 @@ function isBoardFull() {
  */
 function resetGameState() {
     gameState.fields = Array(9).fill(null);
-    gameState.currentPlayer = "cross";
+    gameState.currentPlayer = null;
     gameState.winner = null;
     gameState.winningCombination = null;
     gameState.isDraw = false;
@@ -202,8 +212,9 @@ export function resetPlayerState() {
  * and rerenders the UI.
  */
 export function restartGame() {
+    const starter = determineStarter();
     resetGameState();
-    render();
+    chooseStarter(starter);
 }
 
 
@@ -237,5 +248,41 @@ function initializePlayerNames() {
                 );
         }
     );
+
+}
+
+export function chooseStarter(player = null) {
+    appState.starterSelection.visible = true;
+    const starter =
+        player ??
+        (
+            Math.random() > 0.5
+                ? "cross"
+                : "circle"
+        );
+
+    const isRandom = player === null;
+    appState.starterSelection.spinning = isRandom;
+    appState.starterSelection.player = isRandom ? null : starter;
+    gameState.starterPlayer = starter;
+    render();
+
+    if (!isRandom)
+        return;
+
+    window.setTimeout(() => {
+        appState.starterSelection.player = starter;
+        appState.starterSelection.spinning = false;
+        render();
+
+    }, STARTER_ANIMATION_TIME);
+}
+
+function determineStarter() {
+    if (gameState.isDraw) return null;
+
+    return gameState.winner === "cross"
+        ? "circle"
+        : "cross";
 
 }

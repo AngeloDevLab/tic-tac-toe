@@ -15,7 +15,13 @@ export let appState = {
     loading: {
         progress: 0,
         label: "Loading"
-    }
+    },
+    starterSelection: {
+        visible: false,
+        player: null,
+        spinning: false,
+        confirmed: false
+    },
 };
 
 export let gameState = {
@@ -33,7 +39,7 @@ export let gameState = {
         }
     ],
     starterPlayer: null,
-    currentPlayer: "cross",
+    currentPlayer: null,
 
     fields: Array(9).fill(null),
 

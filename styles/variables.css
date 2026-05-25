@@ -37,6 +37,9 @@
     --transition-fast: 125ms ease-in-out;
     --transition-normal: 250ms ease-in-out;
 
+    /* ===== ANIMTIONS ===== */
+    --starter-duration: 2500ms;
+
     /* ===== BUTTON SIZE ===== */
     --button-width: 240px;
     --button-height: 2rem;

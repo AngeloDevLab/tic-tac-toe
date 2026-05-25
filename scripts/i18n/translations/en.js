@@ -34,6 +34,7 @@ export const en = {
     },
 
     game: {
+        begins: "begins",
         back: "Back",
         currentPlayer: "Current Player",
         winner: "wins the game!",
