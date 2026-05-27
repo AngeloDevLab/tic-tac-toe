@@ -27,6 +27,7 @@ export let appState = {
 export let gameState = {
     gameMode: null,
     matchType: null,
+    difficulty: "easy",
 
     players: [
         {

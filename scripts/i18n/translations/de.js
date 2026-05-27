@@ -14,7 +14,7 @@ export const de = {
         matchType: "Spielart",
         classic: "Classic",
         ultimate: "Ultimate (Demnächst)",
-        singleplayer: "Einzelspieler (Demnächst)",
+        singleplayer: "Einzelspieler",
         local: "Lokaler Mehrspieler",
         online: "Online (Demnächst)",
         currentSelection: "Aktuelle Auswahl",

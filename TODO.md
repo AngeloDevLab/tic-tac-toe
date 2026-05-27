@@ -79,11 +79,11 @@
 - [x] Highlight active player
 
 ### Match Flow
-- [ ] Add starter selection animation
-- [ ] Randomize first starter
-- [ ] Preserve starter on draw
-- [ ] Show starter announcement
-- [ ] Start next round with previous loser
+- [x] Add starter selection animation
+- [x] Randomize first starter
+- [x] Preserve starter on draw
+- [x] Show starter announcement
+- [x] Start next round with previous loser
 
 ### UX
 - [ ] Extend help modal
@@ -91,18 +91,36 @@
 
 ---
 
-## Phase 4 — Singleplayer  V0.5.0
+## Phase 4 — Singleplayer V0.5.0
 
-### Easy 
+### Setup
+- [ ] Enable singleplayer mode
+- [ ] Create AI player
+- [ ] Apply difficulty configuration
+- [ ] Resolve player defaults
+
+### Turn Flow
+- [ ] Add AI turn trigger
+- [ ] Prevent user interaction during AI turn
+- [ ] Add AI move delay
+- [ ] Skip move if game already ended
+
+### Easy
 - [ ] Create random AI
-- [ ] Add AI turn flow
+- [ ] Prevent invalid moves
+- [ ] Add random starter support
+
 
 ### Medium
 - [ ] Add move evaluation
 - [ ] Add win blocking
 
-### Hard V0.5.0
+### Hard
 - [ ] Implement minimax
+
+### UX
+- [ ] Show AI thinking state
+- [ ] Show AI difficulty
 
 ---
 

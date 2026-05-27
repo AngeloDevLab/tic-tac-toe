@@ -59,6 +59,16 @@ export function selectMatchType(type) {
 
 
 /**
+ * Sets the selected difficulty
+ * and rerenders the UI.
+ */
+export function selectDifficulty(difficulty) {
+    gameState.difficulty = difficulty;
+    render();
+}
+
+
+/**
  * Checks whether the game
  * can be started.
  *
@@ -107,18 +117,70 @@ export function goBackToSetup() {
  * Handles a player move
  * when a board cell is clicked.
  *
- * Updates:
- * - player fields
- * - winner state
- * - draw state
- * - active player
- *
  * @param {number} index - Index of the clicked cell.
  */
 export function handleCellClick(index) {
     if (gameState.gameOver) return;
     if (gameState.fields[index] !== null) return;
+    if (isAiTurn()) return;
 
+    placeMove(index);
+    render();
+
+    if (!gameState.gameOver && isAiTurn()) {
+        scheduleAiMove();
+    }
+}
+
+
+/**
+ * Triggers an AI move if it is the AI's turn.
+ * Call this after the starter is confirmed.
+ */
+export function triggerAiMoveIfNeeded() {
+    if (isAiTurn()) scheduleAiMove();
+}
+
+
+function isAiTurn() {
+    return gameState.matchType === "singleplayer" &&
+        gameState.currentPlayer === "circle" &&
+        !gameState.gameOver;
+}
+
+
+function scheduleAiMove() {
+    window.setTimeout(() => {
+        const index = getAiMove();
+        if (index === -1) return;
+        placeMove(index);
+        render();
+    }, 600);
+}
+
+
+function getAiMove() {
+    return getEasyAiMove();
+}
+
+
+function getEasyAiMove() {
+    const empty = gameState.fields
+        .map((field, i) => field === null ? i : null)
+        .filter(i => i !== null);
+
+    if (empty.length === 0) return -1;
+    return empty[Math.floor(Math.random() * empty.length)];
+}
+
+
+/**
+ * Places a move for the current player,
+ * checks win/draw, and switches the active player.
+ *
+ * @param {number} index - Board index to place the move.
+ */
+function placeMove(index) {
     gameState.fields[index] = gameState.currentPlayer;
     checkWinner();
 
@@ -130,8 +192,6 @@ export function handleCellClick(index) {
             switchPlayer();
         }
     }
-
-    render();
 }
 
 
@@ -235,20 +295,22 @@ export function updatePlayerName(playerId, value) {
  * with translated fallback values.
  */
 function initializePlayerNames() {
-    gameState.players.forEach(
-        (player, index) => {
-            player.name =
-                createPlayerName(
-                    player.name,
-                    translate(
-                        index === 0
-                            ? "setup.playerOne"
-                            : "setup.playerTwo"
-                    )
-                );
-        }
-    );
-
+    if (gameState.matchType === "singleplayer") {
+        gameState.players[0].name = createPlayerName(
+            gameState.players[0].name,
+            translate("setup.you")
+        );
+        gameState.players[1].name =
+            translate("setup.opponent") +
+            " (" + translate(`setup.${gameState.difficulty}`) + ")";
+    } else {
+        gameState.players.forEach((player, index) => {
+            player.name = createPlayerName(
+                player.name,
+                translate(index === 0 ? "setup.playerOne" : "setup.playerTwo")
+            );
+        });
+    }
 }
 
 export function chooseStarter(player = null) {

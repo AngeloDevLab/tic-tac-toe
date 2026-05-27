@@ -179,7 +179,7 @@ function getSingleplayerSetup() {
                     label: translate("setup.easy"),
                     value: "easy",
                     dataKey: "difficulty",
-                    isSelected: true //gameState.difficulty === "easy"
+                    isSelected: gameState.difficulty === "easy"
                 })}
 
                 ${renderSelectableButton({

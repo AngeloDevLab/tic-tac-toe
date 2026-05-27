@@ -15,12 +15,14 @@ import {
 import {
     selectGameMode,
     selectMatchType,
+    selectDifficulty,
     handleCellClick,
     restartGame,
     canStartGame,
     startGame,
     goBackToSetup,
-    updatePlayerName
+    updatePlayerName,
+    triggerAiMoveIfNeeded
 } from "../game/game.js";
 
 
@@ -163,6 +165,10 @@ function initSetupEvents() {
         button.addEventListener("click", () => selectMatchType(button.dataset.match));
     });
 
+    document.querySelectorAll("[data-difficulty]").forEach((button) => {
+        button.addEventListener("click", () => selectDifficulty(button.dataset.difficulty));
+    });
+
     document.getElementById("start-game-btn")?.addEventListener("click", () => {
         if (canStartGame()) startGame();
     });
@@ -218,4 +224,5 @@ export function confirmStarter() {
     gameState.currentPlayer = gameState.starterPlayer;
     appState.starterSelection.visible = false;
     render();
+    triggerAiMoveIfNeeded();
 }

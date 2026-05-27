@@ -14,7 +14,7 @@ export const en = {
         matchType: "Match Type",
         classic: "Classic",
         ultimate: "Ultimate (WIP)",
-        singleplayer: "Singleplayer (WIP)",
+        singleplayer: "Singleplayer",
         local: "Local Multiplayer",
         online: "Online Multiplayer (WIP)",
         currentSelection: "Current Selection",
