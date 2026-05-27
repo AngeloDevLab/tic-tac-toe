@@ -164,7 +164,7 @@ function getSingleplayerSetup() {
             ${getPlayerInput({
                 id: "player-two",
                 label: translate("setup.playerTwo"),
-                value: `${translate("setup.opponent")} (${translate("setup.easy")})`,
+                value: `${translate("setup.opponent")} (${translate(`setup.${gameState.difficulty}`)})`,
                 disabled: true,
                 symbol: "circle"
             })}
@@ -186,16 +186,14 @@ function getSingleplayerSetup() {
                     label: translate("setup.medium"),
                     value: "medium",
                     dataKey: "difficulty",
-                    isSelected: gameState.difficulty === "medium",
-                    disabled: true
+                    isSelected: gameState.difficulty === "medium"
                 })}
 
                 ${renderSelectableButton({
                     label: translate("setup.hard"),
                     value: "hard",
                     dataKey: "difficulty",
-                    isSelected: gameState.difficulty === "hard",
-                    disabled: true
+                    isSelected: gameState.difficulty === "hard"
                 })}
 
             </div>
