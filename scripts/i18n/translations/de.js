@@ -54,7 +54,7 @@ export const de = {
         draw: "Ist das Spielfeld voll und niemand gewinnt, endet das Spiel unentschieden.",
         starter: "Der Startspieler wird zufällig bestimmt. Nach jeder Runde beginnt der Verlierer.",
         modesTitle: "Spielmodi",
-        modes: "Classic ist das klassische 3×3 Tic Tac Toe. Wähle Einzelspieler um gegen die KI zu spielen oder Lokaler Mehrspieler für ein Spiel mit einem Freund.",
+        modes: "Classic ist das klassische 3x3 Tic Tac Toe. Wähle Einzelspieler um gegen die KI zu spielen oder Lokaler Mehrspieler für ein Spiel mit einem Freund.",
         difficultyTitle: "KI-Schwierigkeit",
         difficultyEasy: "Die KI setzt zufällige Züge.",
         difficultyMedium: "Die KI blockiert deine Gewinnzüge und nutzt eigene Chancen.",
