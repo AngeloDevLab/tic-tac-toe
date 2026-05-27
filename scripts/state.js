@@ -25,8 +25,8 @@ export let appState = {
 };
 
 export let gameState = {
-    gameMode: null,
-    matchType: null,
+    gameMode: "classic",
+    matchType: "singleplayer",
     difficulty: "easy",
 
     players: [

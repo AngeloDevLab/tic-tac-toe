@@ -64,9 +64,31 @@
     <div id="help-overlay" class="help-overlay" aria-hidden="true" closedby="any">
         <article class="help-modal">
             <h2 data-i18n="help.title"></h2>
-            <p data-i18n="help.setup"></p>
-            <p data-i18n="help.goal"></p>
-            <p data-i18n="help.draw"></p>
+
+            <section class="help-section">
+                <h3 data-i18n="help.rulesTitle"></h3>
+                <p data-i18n="help.goal"></p>
+                <p data-i18n="help.draw"></p>
+                <p data-i18n="help.starter"></p>
+            </section>
+
+            <section class="help-section">
+                <h3 data-i18n="help.modesTitle"></h3>
+                <p data-i18n="help.modes"></p>
+            </section>
+
+            <section class="help-section">
+                <h3 data-i18n="help.difficultyTitle"></h3>
+                <dl class="help-difficulty-list">
+                    <dt data-i18n="setup.easy"></dt>
+                    <dd data-i18n="help.difficultyEasy"></dd>
+                    <dt data-i18n="setup.medium"></dt>
+                    <dd data-i18n="help.difficultyMedium"></dd>
+                    <dt data-i18n="setup.hard"></dt>
+                    <dd data-i18n="help.difficultyHard"></dd>
+                </dl>
+            </section>
+
             <button id="help-close-btn" class="btn btn-ghost" data-i18n="help.close"></button>
         </article>
     </div>

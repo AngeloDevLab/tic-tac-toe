@@ -49,9 +49,16 @@ export const en = {
 
     help: {
         title: "How to Play",
-        setup: "Choose a game mode and match type before starting the game.",
-        goal: "Match three symbols in a row to win the game.",
-        draw: "If the board is full and nobody wins, the match ends in a draw.",
+        rulesTitle: "Rules",
+        goal: "Match three of your symbols in a row horizontally, vertically or diagonally to win.",
+        draw: "If the board is full and nobody wins, the game ends in a draw.",
+        starter: "The starting player is chosen randomly. After each round, the loser starts next.",
+        modesTitle: "Game Modes",
+        modes: "Classic is the standard 3x3 Tic Tac Toe. Choose Singleplayer to face the AI or Local Multiplayer to play with a friend.",
+        difficultyTitle: "AI Difficulty",
+        difficultyEasy: "The AI picks random moves.",
+        difficultyMedium: "The AI blocks your winning moves and takes its own when possible.",
+        difficultyHard: "The AI plays perfectly using Minimax. A draw is the best you can achieve.",
         close: "Close"
     }
 };
