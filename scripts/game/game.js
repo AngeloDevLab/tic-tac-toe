@@ -3,7 +3,7 @@ import { render, startLoadingTransition, navigateTo } from "../render/render.js"
 import { createPlayerName } from "./players.js";
 import { translate } from "../i18n/translate.js";
 import { placeMove } from "./gamemodes/classic.js";
-import { isAiTurn, getAiMove } from "./ai.js";
+import { isAiTurn, getAiMove } from "./aiController.js";
 import { initUltimateState, isUltimateBoardPlayable, placeUltimateMove } from "./gamemodes/ultimate.js";
 
 
@@ -70,11 +70,16 @@ export function handleCellClick(index) {
 
 export function handleUltimateCellClick(boardIndex, cellIndex) {
     if (gameState.gameOver) return;
+    if (isAiTurn()) return;
     if (!isUltimateBoardPlayable(boardIndex)) return;
     if (gameState.ultimateBoards[boardIndex][cellIndex] !== null) return;
 
     placeUltimateMove(boardIndex, cellIndex);
     render();
+
+    if (!gameState.gameOver && isAiTurn()) {
+        scheduleAiMove();
+    }
 }
 
 
@@ -134,9 +139,15 @@ export function triggerAiMoveIfNeeded() {
 
 function scheduleAiMove() {
     window.setTimeout(() => {
-        const index = getAiMove();
-        if (index === -1) return;
-        placeMove(index);
+        if (gameState.gameMode === "ultimate") {
+            const move = getAiMove();
+            if (!move) return;
+            placeUltimateMove(move.boardIndex, move.cellIndex);
+        } else {
+            const index = getAiMove();
+            if (index === -1) return;
+            placeMove(index);
+        }
         render();
     }, 600);
 }

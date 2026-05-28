@@ -1,18 +1,13 @@
-import { gameState } from "../state.js";
-import { winningCombinations } from "./winConditions.js";
+import { gameState } from "../../state.js";
+import { winningCombinations } from "../winConditions.js";
 
-export function isAiTurn() {
-    return gameState.matchType === "singleplayer" &&
-        gameState.gameMode !== "ultimate" &&
-        gameState.currentPlayer === "circle" &&
-        !gameState.gameOver;
-}
 
-export function getAiMove() {
+export function getClassicAiMove() {
     if (gameState.difficulty === "medium") return getMediumAiMove();
     if (gameState.difficulty === "hard") return getHardAiMove();
     return getEasyAiMove();
 }
+
 
 function getEasyAiMove() {
     const empty = gameState.fields
@@ -23,6 +18,7 @@ function getEasyAiMove() {
     return empty[Math.floor(Math.random() * empty.length)];
 }
 
+
 function getMediumAiMove() {
     const win = findWinningMove("circle");
     if (win !== -1) return win;
@@ -32,6 +28,7 @@ function getMediumAiMove() {
 
     return getEasyAiMove();
 }
+
 
 function getHardAiMove() {
     const fields = [...gameState.fields];
@@ -50,6 +47,7 @@ function getHardAiMove() {
     }
     return bestIndex;
 }
+
 
 function minimax(fields, isMaximizing) {
     const result = evaluateBoard(fields);
@@ -76,6 +74,7 @@ function minimax(fields, isMaximizing) {
     }
 }
 
+
 function evaluateBoard(fields) {
     for (const [a, b, c] of winningCombinations) {
         if (fields[a] && fields[a] === fields[b] && fields[a] === fields[c]) {
@@ -85,6 +84,7 @@ function evaluateBoard(fields) {
     if (fields.every(f => f !== null)) return 0;
     return null;
 }
+
 
 function findWinningMove(symbol) {
     for (const [a, b, c] of winningCombinations) {
