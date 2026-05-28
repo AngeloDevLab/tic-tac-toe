@@ -1,0 +1,89 @@
+.ultimate-board {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  width: clamp(280px, 90vw, 580px);
+  aspect-ratio: 1;
+}
+
+.mini-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  padding: 4px;
+  border: 2px solid var(--color-border);
+  border-radius: var(--border-radius);
+  position: relative;
+  aspect-ratio: 1;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    opacity 180ms ease;
+}
+
+.mini-board.is-targeted {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-glow);
+}
+
+.mini-board.is-free-choice {
+  border-color: var(--color-primary-muted);
+}
+
+.mini-board.is-dimmed {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.mini-board.is-global-winner {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-glow-strong);
+}
+
+.ultimate-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition:
+    transform var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.ultimate-cell img {
+  width: 75%;
+  height: 75%;
+}
+
+.ultimate-cell:hover {
+  transform: scale(1.06);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.mini-board.is-won .ultimate-cell {
+  pointer-events: none;
+}
+
+.mini-board-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15, 23, 42, 0.82);
+  border-radius: calc(var(--border-radius) - 2px);
+}
+
+.mini-board-overlay img {
+  width: 62%;
+  height: 62%;
+}
+
+.mini-board-draw {
+  background: rgba(51, 65, 85, 0.75);
+}

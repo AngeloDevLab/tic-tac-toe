@@ -2,8 +2,9 @@ import { appState, gameState, SCREENS } from "../state.js";
 import { render, startLoadingTransition, navigateTo } from "../render/render.js";
 import { createPlayerName } from "./players.js";
 import { translate } from "../i18n/translate.js";
-import { placeMove } from "./board.js";
+import { placeMove } from "./gamemodes/classic.js";
 import { isAiTurn, getAiMove } from "./ai.js";
+import { initUltimateState, isUltimateBoardPlayable, placeUltimateMove } from "./gamemodes/ultimate.js";
 
 
 const STARTER_ANIMATION_TIME = 2500;
@@ -64,6 +65,16 @@ export function handleCellClick(index) {
     if (!gameState.gameOver && isAiTurn()) {
         scheduleAiMove();
     }
+}
+
+
+export function handleUltimateCellClick(boardIndex, cellIndex) {
+    if (gameState.gameOver) return;
+    if (!isUltimateBoardPlayable(boardIndex)) return;
+    if (gameState.ultimateBoards[boardIndex][cellIndex] !== null) return;
+
+    placeUltimateMove(boardIndex, cellIndex);
+    render();
 }
 
 
@@ -158,6 +169,10 @@ function resetGameState() {
     gameState.winningCombination = null;
     gameState.isDraw = false;
     gameState.gameOver = false;
+
+    if (gameState.gameMode === "ultimate") {
+        initUltimateState();
+    }
 }
 
 

@@ -3,11 +3,7 @@ import { translate } from "../../i18n/translate.js";
 import { renderSymbol } from "./components/symbol.template.js";
 import { getStarterTemplate } from "./components/starter.template.js";
 
-/**
- * Returns the active game screen template.
- *
- * @returns {string}
- */
+
 export function getGameTemplate() {
     return `
         <section class="game-screen">
@@ -15,14 +11,9 @@ export function getGameTemplate() {
             <div class="game-container max-content">
 
                 <div class="board-panel">
-
-                    <div class="game-board">
-                        ${renderCells()}
-                        ${renderWinLine()}
-                    </div>
-
+                    ${gameState.gameMode === "ultimate" ? renderUltimateBoard() : renderClassicBoard()}
                 </div>
-                
+
                 <div class="game-panel">
 
                     <div class="game-header">
@@ -49,60 +40,32 @@ export function getGameTemplate() {
 }
 
 
-/**
- * Renders all board cells.
- */
+function renderClassicBoard() {
+    return `
+        <div class="game-board">
+            ${renderCells()}
+            ${renderWinLine()}
+        </div>
+    `;
+}
+
+
 function renderCells() {
     return gameState.fields
-        .map((field, index) => `
-            <div class="cell" data-index="${index}">${renderSymbol(field)}</div>
-        `)
+        .map((field, index) => {
+            const isWinner = gameState.winningCombination?.includes(index);
+            return `<div class="cell${isWinner ? " is-winner" : ""}" data-index="${index}">${renderSymbol(field)}</div>`;
+        })
         .join("");
 }
 
 
-/**
- * Renders the current game status message.
- *
- * Displays:
- * - current player
- * - winner state
- * - draw state
- *
- * @returns {string} HTML status template.
- */
-function renderGameStatus() {
-
-    if (gameState.winner) {
-        return `<p class="game-status">${renderSymbol(gameState.winner)}${translate("game.winner")} </p>`;
-    }
-
-    if (gameState.isDraw) {
-        return `<p class="game-status">${translate("game.draw")}</p>`;
-    }
-
-    return "";
-}
-
-
-/**
- * Renders the winning line overlay
- * for the current winning combination.
- *
- * @returns {string} HTML win line template.
- */
 function renderWinLine() {
     if (!gameState.winningCombination) return "";
     return `<div class="win-line ${getWinLineClass()}"></div>`;
 }
 
 
-/**
- * Returns the CSS class name
- * for the current winning combination.
- *
- * @returns {string}
- */
 function getWinLineClass() {
     const combination = gameState.winningCombination.join("-");
     const classes = {
@@ -120,12 +83,75 @@ function getWinLineClass() {
 }
 
 
-/**
- * Renders the restart button
- * after the game is over.
- *
- * @returns {string} HTML button template.
- */
+function renderUltimateBoard() {
+    return `
+        <div class="ultimate-board">
+            ${gameState.ultimateBoards.map((board, boardIndex) =>
+                renderMiniBoard(board, boardIndex)
+            ).join("")}
+            ${renderWinLine()}
+        </div>
+    `;
+}
+
+
+function renderMiniBoard(board, boardIndex) {
+    const winner = gameState.ultimateBoardWinners[boardIndex];
+    const isForced = gameState.activeBoardIndex !== null;
+    const isTargeted = isForced && gameState.activeBoardIndex === boardIndex;
+    const isDimmed = isForced && !isTargeted && !winner && !gameState.gameOver;
+    const isFreeChoice = !isForced && !winner && !gameState.gameOver;
+    const isGlobalWinner = gameState.winningCombination?.includes(boardIndex);
+
+    const classes = [
+        "mini-board",
+        winner ? "is-won" : "",
+        isTargeted ? "is-targeted" : "",
+        isFreeChoice ? "is-free-choice" : "",
+        isDimmed ? "is-dimmed" : "",
+        isGlobalWinner ? "is-global-winner" : ""
+    ].filter(Boolean).join(" ");
+
+    return `
+        <div class="${classes}">
+            ${board.map((cell, cellIndex) => `
+                <div class="ultimate-cell"
+                     data-board="${boardIndex}"
+                     data-cell="${cellIndex}">
+                    ${renderSymbol(cell)}
+                </div>
+            `).join("")}
+            ${winner ? renderMiniBoardOverlay(winner) : ""}
+        </div>
+    `;
+}
+
+
+function renderMiniBoardOverlay(winner) {
+    if (winner === "draw") {
+        return `<div class="mini-board-overlay mini-board-draw"></div>`;
+    }
+    return `
+        <div class="mini-board-overlay">
+            ${renderSymbol(winner)}
+        </div>
+    `;
+}
+
+
+function renderGameStatus() {
+    if (gameState.winner) {
+        return `<p class="game-status">${renderSymbol(gameState.winner)}${translate("game.winner")} </p>`;
+    }
+
+    if (gameState.isDraw) {
+        return `<p class="game-status">${translate("game.draw")}</p>`;
+    }
+
+    return "";
+}
+
+
 function renderRestartButton() {
     if (!gameState.gameOver) return "";
     return `<button id="restart-btn" class="btn btn-primary">${translate("game.restart")}</button>`;
@@ -133,7 +159,6 @@ function renderRestartButton() {
 
 
 function renderPlayerPanels() {
-
     return gameState.players
         .map((player) => `
             <div class=" player-panel ${player.symbol === gameState.currentPlayer ? "is-active" : ""}">
@@ -148,6 +173,5 @@ function renderPlayerPanels() {
                 </div>
             </div>
         `)
-
         .join("");
 }

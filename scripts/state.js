@@ -44,6 +44,10 @@ export let gameState = {
 
     fields: Array(9).fill(null),
 
+    ultimateBoards: null,
+    ultimateBoardWinners: null,
+    activeBoardIndex: null,
+
     winner: null,
     winningCombination: null,
 

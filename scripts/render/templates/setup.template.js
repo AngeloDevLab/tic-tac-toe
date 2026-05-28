@@ -43,8 +43,7 @@ export function getSetupTemplate() {
                                 label: translate("setup.ultimate"),
                                 value: "ultimate",
                                 dataKey: "mode",
-                                isSelected: gameState.gameMode === "ultimate",
-                                disabled: true
+                                isSelected: gameState.gameMode === "ultimate"
                             })}
 
                         </div>

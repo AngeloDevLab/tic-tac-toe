@@ -94,48 +94,47 @@
 ## Phase 4 — Singleplayer V0.5.0
 
 ### Setup
-- [ ] Enable singleplayer mode
-- [ ] Create AI player
-- [ ] Apply difficulty configuration
-- [ ] Resolve player defaults
+- [x] Enable singleplayer mode
+- [x] Create AI player
+- [x] Apply difficulty configuration
+- [x] Resolve player defaults
 
 ### Turn Flow
-- [ ] Add AI turn trigger
-- [ ] Prevent user interaction during AI turn
-- [ ] Add AI move delay
-- [ ] Skip move if game already ended
+- [x] Add AI turn trigger
+- [x] Prevent user interaction during AI turn
+- [x] Add AI move delay
+- [x] Skip move if game already ended
 
 ### Easy
-- [ ] Create random AI
-- [ ] Prevent invalid moves
-- [ ] Add random starter support
+- [x] Create random AI
+- [x] Prevent invalid moves
+- [x] Add random starter support
 
 
 ### Medium
-- [ ] Add move evaluation
-- [ ] Add win blocking
+- [x] Add move evaluation
+- [x] Add win blocking
 
 ### Hard
-- [ ] Implement minimax
+- [x] Implement minimax
 
 ### UX
-- [ ] Show AI thinking state
-- [ ] Show AI difficulty
+- [x] Show AI difficulty
 
 ---
 
 ## Phase 5 — Ultimate Tic Tac Toe V0.6.0
 
 ### Core System
-- [ ] Create nested board state
-- [ ] Render ultimate board
-- [ ] Add active board rules
-- [ ] Add local ultimate gameplay
+- [x] Create nested board state
+- [x] Render ultimate board
+- [x] Add active board rules
+- [x] Add local ultimate gameplay
 
 ### Game Logic
-- [ ] Add mini-board winner detection
-- [ ] Add global winner detection
-- [ ] Update restart flow
+- [x] Add mini-board winner detection
+- [x] Add global winner detection
+- [x] Update restart flow
 
 ### Modes V0.7.0
 - [ ] Add ultimate singleplayer

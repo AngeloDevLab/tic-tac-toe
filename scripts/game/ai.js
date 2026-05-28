@@ -1,8 +1,9 @@
 import { gameState } from "../state.js";
-import { winningCombinations } from "./board.js";
+import { winningCombinations } from "./winConditions.js";
 
 export function isAiTurn() {
     return gameState.matchType === "singleplayer" &&
+        gameState.gameMode !== "ultimate" &&
         gameState.currentPlayer === "circle" &&
         !gameState.gameOver;
 }

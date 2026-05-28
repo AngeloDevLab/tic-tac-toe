@@ -13,7 +13,7 @@ export const en = {
         gameMode: "Game Mode",
         matchType: "Match Type",
         classic: "Classic",
-        ultimate: "Ultimate (WIP)",
+        ultimate: "Ultimate",
         singleplayer: "Singleplayer",
         local: "Local Multiplayer",
         online: "Online Multiplayer (WIP)",

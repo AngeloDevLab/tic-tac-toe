@@ -3,6 +3,7 @@ import {
     selectMatchType,
     selectDifficulty,
     handleCellClick,
+    handleUltimateCellClick,
     restartGame,
     canStartGame,
     startGame,
@@ -17,7 +18,7 @@ import {
     saveLanguage
 } from "../i18n/language.js";
 
-import { appState, SCREENS } from "../state.js";
+import { appState, gameState, SCREENS } from "../state.js";
 import { render } from "./render.js";
 
 
@@ -58,9 +59,18 @@ function initSetupEvents() {
 
 
 function initGameEvents() {
-    document.querySelectorAll(".cell").forEach(cell =>
-        cell.addEventListener("click", () => handleCellClick(Number(cell.dataset.index)))
-    );
+    if (gameState.gameMode === "ultimate") {
+        document.querySelectorAll(".ultimate-cell").forEach(cell =>
+            cell.addEventListener("click", () => handleUltimateCellClick(
+                Number(cell.dataset.board),
+                Number(cell.dataset.cell)
+            ))
+        );
+    } else {
+        document.querySelectorAll(".cell").forEach(cell =>
+            cell.addEventListener("click", () => handleCellClick(Number(cell.dataset.index)))
+        );
+    }
 
     document.getElementById("restart-btn")?.addEventListener("click", restartGame);
     document.getElementById("back-to-setup-btn")?.addEventListener("click", goBackToSetup);
