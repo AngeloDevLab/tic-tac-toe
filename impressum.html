@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg">
+    <title>Imprint - GameHub</title>
+
+    <link rel="stylesheet" href="./styles/variables.css">
+    <link rel="stylesheet" href="./styles/standard.css">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/components/header.css">
+    <link rel="stylesheet" href="./styles/components/footer.css">
+    <link rel="stylesheet" href="./styles/components/buttons.css">
+    <link rel="stylesheet" href="./styles/components/legalPage.css">
+
+    <script type="module" src="./scripts/legal.js"></script>
+</head>
+
+<body>
+
+    <header class="app-header">
+        <div class="header-wrap max-content">
+
+            <a class="brand-link" href="./index.html">
+                <img class="brand-logo" src="./assets/icons/favicon.svg" alt="GameHub logo">
+                <p class="hide-on-mobile brand-name">GameHub</p>
+            </a>
+
+            <div class="header-actions">
+                <button id="language-btn" class="btn btn-ghost header-btn" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="hide-on-mobile" aria-hidden="true" focusable="false">
+                        <path d="m5 8 6 6" />
+                        <path d="m4 14 6-6 2-3" />
+                        <path d="M2 5h12" />
+                        <path d="M7 2h1" />
+                        <path d="m22 22-5-10-5 10" />
+                        <path d="M14 18h6" />
+                    </svg>
+                    <span id="language-label"></span>
+                </button>
+            </div>
+
+        </div>
+    </header>
+
+    <main class="legal-page max-content">
+
+        <a href="./index.html" class="btn btn-ghost legal-back-link" data-i18n="legal.backToGame"></a>
+
+        <article class="legal-content">
+
+            <h1 data-i18n="footer.imprint"></h1>
+
+            <section class="legal-section">
+                <h2>Angaben gemäß § 5 TMG</h2>
+                <address>
+                    Angelo Pietsch<br>
+                    Haydnstraße 45<br>
+                    02708 Löbau
+                </address>
+            </section>
+
+            <section class="legal-section">
+                <h2>Kontakt</h2>
+                <p>E-Mail: <a href="mailto:apietsch94@gmail.com">apietsch94@gmail.com</a></p>
+            </section>
+
+        </article>
+
+    </main>
+
+    <footer class="app-footer">
+        <div class="footer-wrap max-content">
+            <a class="brand-link" href="./index.html">
+                <img class="brand-logo" src="./assets/icons/favicon.svg" alt="GameHub logo">
+                <p class="hide-on-mobile brand-name">GameHub</p>
+            </a>
+
+            <nav class="footer-links">
+                <a href="./impressum.html" data-i18n="footer.imprint"></a>
+                <a href="./datenschutz.html" data-i18n="footer.privacy"></a>
+            </nav>
+        </div>
+    </footer>
+
+</body>
+
+</html>

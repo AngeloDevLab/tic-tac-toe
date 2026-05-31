@@ -34,7 +34,9 @@ export const de = {
     },
 
     game: {
+        begin: "beginnst",
         begins: "beginnt",
+        confirmStarter: "Spiel starten",
         back: "Zurück",
         currentPlayer: "Aktiver Spieler",
         winner: "gewinnt das Spiel!",
@@ -45,6 +47,10 @@ export const de = {
     footer: {
         imprint: "Impressum",
         privacy: "Datenschutz"
+    },
+
+    legal: {
+        backToGame: "Zurück zum Spiel"
     },
 
     help: {

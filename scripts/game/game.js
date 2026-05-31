@@ -1,13 +1,13 @@
 import { appState, gameState, SCREENS } from "../state.js";
 import { render, startLoadingTransition, navigateTo } from "../render/render.js";
-import { createPlayerName } from "./players.js";
+import { createPlayerName, sanitizePlayerName } from "./players.js";
 import { translate } from "../i18n/translate.js";
 import { placeMove } from "./gamemodes/classic.js";
 import { isAiTurn, getAiMove } from "./aiController.js";
 import { initUltimateState, isUltimateBoardPlayable, placeUltimateMove } from "./gamemodes/ultimate.js";
 
 
-const STARTER_ANIMATION_TIME = 2500;
+const STARTER_ANIMATION_TIME = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 2500;
 
 
 export function selectGameMode(mode) {
@@ -92,7 +92,7 @@ export function restartGame() {
 
 export function updatePlayerName(playerId, value) {
     const index = playerId === "player-one" ? 0 : 1;
-    gameState.players[index].name = createPlayerName(value, translate(`setup.player${index + 1}`));
+    gameState.players[index].name = sanitizePlayerName(value);
 }
 
 

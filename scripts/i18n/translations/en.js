@@ -34,7 +34,9 @@ export const en = {
     },
 
     game: {
+        begin: "begin",
         begins: "begins",
+        confirmStarter: "Start Game",
         back: "Back",
         currentPlayer: "Current Player",
         winner: "wins the game!",
@@ -45,6 +47,10 @@ export const en = {
     footer: {
         imprint: "Imprint",
         privacy: "Privacy"
+    },
+
+    legal: {
+        backToGame: "Back to Game"
     },
 
     help: {

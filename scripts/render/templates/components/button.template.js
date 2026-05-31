@@ -26,6 +26,7 @@ export function renderSelectableButton({
             "
 
             data-${dataKey}="${value}"
+            aria-pressed="${isSelected}"
 
             ${disabled
                 ? "disabled"

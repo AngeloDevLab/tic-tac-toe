@@ -8,6 +8,7 @@ export function getLanguage() {
 
 export function setLanguage(language) {
     appState.language = language;
+    document.documentElement.lang = language;
 }
 
 export function saveLanguage() {
@@ -20,6 +21,12 @@ export function loadLanguage() {
     if (savedLanguage) {
         setLanguage(savedLanguage);
     }
+}
+
+export function toggleLanguage() {
+    const next = getLanguage() === "en" ? "de" : "en";
+    setLanguage(next);
+    saveLanguage();
 }
 
 export function updateLanguageButton() {

@@ -30,6 +30,11 @@ export function createPlayerName(value, fallback) {
 }
 
 
+export function sanitizePlayerName(value) {
+    return sanitizeName(value);
+}
+
+
 /**
  * Trims, escapes and limits
  * a player name.

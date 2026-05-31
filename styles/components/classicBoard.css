@@ -15,6 +15,9 @@
   background-color: var(--color-surface);
   border: var(--border-size) solid var(--color-border);
   border-radius: var(--border-radius);
+  padding: 0;
+  font: inherit;
+  appearance: none;
   cursor: pointer;
   transition:
     transform var(--transition-fast),
@@ -27,14 +30,23 @@
   height: 80%;
 }
 
-.cell:hover {
+.cell:hover:not(:disabled) {
   transform: scale(1.03);
   background-color: rgba(255, 255, 255, 0.05);
   box-shadow: var(--shadow-glow);
 }
 
+.cell:disabled {
+  cursor: default;
+}
+
 .cell.is-winner {
   border-color: var(--color-primary);
   box-shadow: var(--shadow-glow);
+}
+
+.cell:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 

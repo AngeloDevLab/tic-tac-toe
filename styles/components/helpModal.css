@@ -1,30 +1,24 @@
-.help-overlay {
-  position: fixed;
-  inset: 0;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  background: rgba(2, 6, 23, 0.7);
-  z-index: 1;
-  padding: 1rem;
-}
-
-.help-overlay.is-open {
-  display: flex;
-}
-
-.help-modal {
+dialog.help-modal {
   width: min(100%, 500px);
   max-height: calc(100dvh - 2rem);
+  margin: auto;
   padding: 1.5rem;
   border-top-left-radius: var(--border-radius);
   border-bottom-left-radius: var(--border-radius);
   border: var(--border-size) solid var(--color-border);
   background: var(--color-surface);
+  color: var(--color-text);
+  overflow-y: auto;
+}
+
+dialog.help-modal[open] {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  overflow-y: auto;
+}
+
+dialog.help-modal::backdrop {
+  background: rgba(2, 6, 23, 0.7);
 }
 
 .help-modal h2 {

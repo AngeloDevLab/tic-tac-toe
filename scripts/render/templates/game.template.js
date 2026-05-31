@@ -18,7 +18,9 @@ export function getGameTemplate() {
 
                     <div class="game-header">
                         ${renderPlayerPanels()}
-                        ${renderGameStatus()}
+                        <div role="status" aria-live="polite" aria-atomic="true">
+                            ${renderGameStatus()}
+                        </div>
                     </div>
 
                     <div class="game-action-row">
@@ -54,7 +56,8 @@ function renderCells() {
     return gameState.fields
         .map((field, index) => {
             const isWinner = gameState.winningCombination?.includes(index);
-            return `<div class="cell${isWinner ? " is-winner" : ""}" data-index="${index}">${renderSymbol(field)}</div>`;
+            const isDisabled = field !== null || gameState.gameOver;
+            return `<button class="cell${isWinner ? " is-winner" : ""}" data-index="${index}" type="button"${isDisabled ? " disabled" : ""}>${renderSymbol(field)}</button>`;
         })
         .join("");
 }
@@ -115,11 +118,13 @@ function renderMiniBoard(board, boardIndex) {
     return `
         <div class="${classes}">
             ${board.map((cell, cellIndex) => `
-                <div class="ultimate-cell"
+                <button class="ultimate-cell"
+                     type="button"
                      data-board="${boardIndex}"
-                     data-cell="${cellIndex}">
+                     data-cell="${cellIndex}"
+                     ${cell !== null || winner || gameState.gameOver ? "disabled" : ""}>
                     ${renderSymbol(cell)}
-                </div>
+                </button>
             `).join("")}
             ${winner ? renderMiniBoardOverlay(winner) : ""}
         </div>
@@ -161,7 +166,7 @@ function renderRestartButton() {
 function renderPlayerPanels() {
     return gameState.players
         .map((player) => `
-            <div class=" player-panel ${player.symbol === gameState.currentPlayer ? "is-active" : ""}">
+            <div class="player-panel ${player.symbol === gameState.currentPlayer ? "is-active" : ""}" ${player.symbol === gameState.currentPlayer ? 'aria-current="true"' : ""}>
                 <div class="player-symbol">
                     ${renderSymbol(player.symbol)}
                 </div>

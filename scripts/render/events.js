@@ -13,9 +13,8 @@ import {
 } from "../game/game.js";
 
 import {
-    getLanguage,
-    setLanguage,
-    saveLanguage
+    toggleLanguage,
+    updateLanguageButton
 } from "../i18n/language.js";
 
 import { appState, gameState, SCREENS } from "../state.js";
@@ -25,9 +24,14 @@ import { render } from "./render.js";
 export function initGlobalEvents() {
     document.getElementById("help-btn")?.addEventListener("click", openHelpModal);
     document.getElementById("help-close-btn")?.addEventListener("click", closeHelpModal);
-    document.getElementById("language-btn")?.addEventListener("click", toggleLanguage);
-    document.getElementById("help-overlay")?.addEventListener("click", (e) => {
-        if (e.target.id === "help-overlay") closeHelpModal();
+    document.getElementById("language-btn")?.addEventListener("click", handleLanguageToggle);
+
+    const helpModal = document.getElementById("help-modal");
+    helpModal?.addEventListener("click", (e) => {
+        if (e.target === helpModal) closeHelpModal();
+    });
+    helpModal?.addEventListener("close", () => {
+        document.getElementById("help-btn")?.focus();
     });
 
     if (appState.currentScreen === SCREENS.SETUP) initSetupEvents();
@@ -75,28 +79,39 @@ function initGameEvents() {
     document.getElementById("restart-btn")?.addEventListener("click", restartGame);
     document.getElementById("back-to-setup-btn")?.addEventListener("click", goBackToSetup);
     document.getElementById("starter-confirm-btn")?.addEventListener("click", confirmStarter);
+
+    const starterDialog = document.getElementById("starter-dialog");
+    if (starterDialog) {
+        starterDialog.showModal();
+
+        starterDialog.addEventListener("click", (e) => {
+            if (e.target === starterDialog && !appState.starterSelection.spinning) {
+                confirmStarter();
+            }
+        });
+
+        starterDialog.addEventListener("cancel", (e) => {
+            e.preventDefault();
+            if (!appState.starterSelection.spinning) {
+                confirmStarter();
+            }
+        });
+    }
 }
 
 
 function openHelpModal() {
-    const overlay = document.getElementById("help-overlay");
-    overlay.classList.add("is-open");
-    overlay.setAttribute("aria-hidden", "false");
-    document.getElementById("help-close-btn")?.focus();
+    document.getElementById("help-modal")?.showModal();
 }
 
 
 function closeHelpModal() {
-    const overlay = document.getElementById("help-overlay");
-    overlay.classList.remove("is-open");
-    overlay.setAttribute("aria-hidden", "true");
-    document.getElementById("help-btn")?.focus();
+    document.getElementById("help-modal")?.close();
 }
 
 
-function toggleLanguage() {
-    const next = getLanguage() === "en" ? "de" : "en";
-    setLanguage(next);
-    saveLanguage();
+function handleLanguageToggle() {
+    toggleLanguage();
+    updateLanguageButton();
     render();
 }

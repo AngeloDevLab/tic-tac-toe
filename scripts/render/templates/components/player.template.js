@@ -9,6 +9,7 @@ export function getPlayerInput({ id, label, placeholder, value = "", disabled = 
             </label>
 
             <input
+                type="text"
                 id="${id}"
                 class="input"
                 data-player="${id}"

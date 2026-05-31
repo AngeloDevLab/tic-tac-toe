@@ -45,8 +45,19 @@
     outline-offset: 2px;
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .btn {
+        transition: none;
+    }
+
+    .btn:hover:not(:disabled) {
+        transform: none;
+    }
+}
+
 .btn-primary {
     background: var(--color-primary);
+    color: var(--color-bg);
 }
 
 .btn-primary:hover:not(:disabled) {

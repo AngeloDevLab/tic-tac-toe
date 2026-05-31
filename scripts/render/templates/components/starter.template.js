@@ -12,8 +12,12 @@ export function getStarterTemplate() {
                 player.symbol === gameState.starterPlayer
         );
 
+    const beginsVerb = starter?.name === translate("setup.you")
+        ? translate("game.begin")
+        : translate("game.begins");
+
     return `
-        <div class="starter-content" closedby="any">
+        <dialog id="starter-dialog" class="starter-dialog">
 
             <div
                 class="starter-card ${appState.starterSelection.spinning
@@ -40,13 +44,14 @@ export function getStarterTemplate() {
                         <div class="starter-result">
 
                             <p class="starter-text">
-                                ${starter?.name}
-                                ${translate("game.begins")}
+                                ${starter?.name ?? ""}
+                                ${beginsVerb}
                             </p>
 
                             <button
                                 id="starter-confirm-btn"
                                 class="btn btn-primary"
+                                aria-label="${translate("game.confirmStarter")}"
                             >
                                 OK
                             </button>
@@ -56,6 +61,6 @@ export function getStarterTemplate() {
             : ""
         }
 
-        </div>
+        </dialog>
     `;
 }

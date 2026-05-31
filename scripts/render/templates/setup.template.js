@@ -28,7 +28,7 @@ export function getSetupTemplate() {
                     </div>
 
                     <div class="selection-group">
-                        <h3>${translate("setup.gameMode")}</h3>
+                        <h2>${translate("setup.gameMode")}</h2>
 
                         <div class="button-group">
 
@@ -50,7 +50,7 @@ export function getSetupTemplate() {
                     </div>
 
                     <div class="selection-group">
-                        <h3>${translate("setup.matchType")}</h3>
+                        <h2>${translate("setup.matchType")}</h2>
 
                         <div class="button-group">
 
@@ -84,7 +84,7 @@ export function getSetupTemplate() {
                 <aside class="summary-panel">
 
                     <div class="selection-summary">
-                        <h3>${translate("setup.currentSelection")}</h3>
+                        <h2>${translate("setup.currentSelection")}</h2>
 
                         <p>
                             <strong>${translate("setup.selectedMode")}:</strong>
@@ -99,9 +99,9 @@ export function getSetupTemplate() {
 
                     <div class="match-config">
 
-                        <h3>
+                        <h2>
                             ${translate("setup.matchConfiguration")}
-                        </h3>
+                        </h2>
 
                         ${getPlayerConfigurationTemplate()}
 
@@ -109,7 +109,7 @@ export function getSetupTemplate() {
 
                     <button
                         id="start-game-btn"
-                        class="btn btn-primary "
+                        class="btn btn-primary"
                         ${!canStartGame() ? "disabled" : ""}
                     >
                         ${translate("setup.start")}
@@ -157,6 +157,7 @@ function getSingleplayerSetup() {
                 id: "player-one",
                 label: translate("setup.playerOne"),
                 placeholder: translate("setup.you"),
+                value: gameState.players[0].name,
                 symbol: "cross"
             })}
 
@@ -168,9 +169,9 @@ function getSingleplayerSetup() {
                 symbol: "circle"
             })}
 
-            <h4>
+            <h3>
                 ${translate("setup.difficulty")}
-            </h4>
+            </h3>
 
             <div class="button-group">
 
@@ -210,6 +211,7 @@ function getLocalSetup() {
                 id: "player-one",
                 label: translate("setup.playerOne"),
                 placeholder: translate("setup.playerOne"),
+                value: gameState.players[0].name,
                 symbol: "cross"
             })}
 
@@ -217,6 +219,7 @@ function getLocalSetup() {
                 id: "player-two",
                 label: translate("setup.playerTwo"),
                 placeholder: translate("setup.playerTwo"),
+                value: gameState.players[1].name,
                 symbol: "circle"
             })}
 
