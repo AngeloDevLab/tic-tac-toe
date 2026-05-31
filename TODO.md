@@ -22,14 +22,6 @@
 - [x] Improve game layout
 - [x] Improve responsive design
 - [x] Polish button system
-- [ ] Add winner animations
-
-### Architecture
-- [ ] Reorganize file naming
-- [ ] Improve render structure
-- [ ] Improve state structure
-- [ ] Clean template structure
-- [ ] Add JSDoc documentation
 
 ---
 
@@ -86,8 +78,8 @@
 - [x] Start next round with previous loser
 
 ### UX
-- [ ] Extend help modal
-- [ ] Add input validation
+- [x] Extend help modal
+- [x] Add input validation
 
 ---
 
@@ -137,11 +129,36 @@
 - [x] Update restart flow
 
 ### Modes V0.7.0
-- [ ] Add ultimate singleplayer
+- [x] Add ultimate singleplayer
 
 ---
 
-## Phase 6 — Online Multiplayer V0.8.0
+## Phase 6 — Accessibility & Legal
+
+### Accessibility
+- [x] Fix contrast ratio on primary buttons
+- [x] Fix heading hierarchy in setup screen
+- [x] Make board cells keyboard accessible (div → button)
+- [x] Add aria-pressed to selectable buttons
+- [x] Add aria-live region for game status announcements
+- [x] Add aria-current to active player panel
+- [x] Add aria-hidden to decorative SVGs
+- [x] Replace help overlay with native dialog element
+- [x] Replace starter overlay with native dialog (ESC + click-outside)
+- [x] Update html lang attribute on language change
+- [x] Add prefers-reduced-motion support for all animations
+
+### Legal
+- [x] Add Impressum page
+- [x] Add Datenschutz page
+
+### UX
+- [x] Preserve player names when switching game mode or match type
+- [x] Fix verb conjugation in starter screen (You begin / Alice begins)
+
+---
+
+## Phase 7 — Online Multiplayer V0.8.0
 
 ### Foundation
 - [ ] Evaluate backend solution
@@ -159,7 +176,7 @@
 
 ---
 
-## Phase 7 — Polish & Expansion V0.9.0
+## Phase 8 — Polish & Expansion V0.9.0
 
 ### Experience
 - [ ] Add sound effects
@@ -172,3 +189,11 @@
 - [ ] Add ranked mode
 - [ ] Add achievements
 - [ ] Add settings screen
+
+---
+
+## Ongoing
+
+- [ ] Improve render structure
+- [ ] Improve state structure
+- [ ] Add JSDoc documentation
