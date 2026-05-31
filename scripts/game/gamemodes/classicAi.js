@@ -2,6 +2,12 @@ import { gameState } from "../../state.js";
 import { winningCombinations } from "../winConditions.js";
 
 
+/**
+ * Returns the AI's chosen cell index for the classic board.
+ * Returns -1 if no move is available.
+ *
+ * @returns {number} Cell index (0–8) or -1.
+ */
 export function getClassicAiMove() {
     if (gameState.difficulty === "medium") return getMediumAiMove();
     if (gameState.difficulty === "hard") return getHardAiMove();
@@ -49,6 +55,15 @@ function getHardAiMove() {
 }
 
 
+/**
+ * Minimax algorithm for the classic board.
+ * AI (circle) maximizes, opponent (cross) minimizes.
+ *
+ * @param {Array<string|null>} fields - Current board state.
+ * @param {boolean} isMaximizing - True if it is the AI's turn.
+ *
+ * @returns {number} Score of the board position.
+ */
 function minimax(fields, isMaximizing) {
     const result = evaluateBoard(fields);
     if (result !== null) return result;

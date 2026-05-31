@@ -9,6 +9,9 @@ import { initGlobalEvents } from "./events.js";
 let loadingTimer = null;
 
 
+/**
+ * Bootstraps the application with an initial loading transition to the setup screen.
+ */
 export function initApp() {
     startLoadingTransition({
         targetScreen: SCREENS.SETUP,
@@ -18,12 +21,25 @@ export function initApp() {
 }
 
 
+/**
+ * Navigates directly to a screen and re-renders.
+ *
+ * @param {string} screen - Screen identifier from SCREENS.
+ */
 export function navigateTo(screen) {
     appState.currentScreen = screen;
     render();
 }
 
 
+/**
+ * Shows the loading screen, animates the progress bar, then navigates to the target screen.
+ *
+ * @param {object} options
+ * @param {string} options.targetScreen - Screen to navigate to after loading.
+ * @param {number} options.duration - Duration of the loading animation in milliseconds.
+ * @param {string} options.label - Translation key for the loading label.
+ */
 export function startLoadingTransition({ targetScreen, duration, label }) {
     window.clearInterval(loadingTimer);
     appState.currentScreen = SCREENS.LOADING;
@@ -51,6 +67,10 @@ export function startLoadingTransition({ targetScreen, duration, label }) {
 }
 
 
+/**
+ * Re-renders the active screen into the main container
+ * and rebinds all events and translations.
+ */
 export function render() {
     const app = document.getElementById("app-main");
     app.innerHTML = getMainTemplate();

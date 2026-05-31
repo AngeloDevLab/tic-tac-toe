@@ -10,24 +10,44 @@ import { initUltimateState, isUltimateBoardPlayable, placeUltimateMove } from ".
 const STARTER_ANIMATION_TIME = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 2500;
 
 
+/**
+ * Sets the selected game mode and re-renders the setup screen.
+ *
+ * @param {string} mode - Game mode ("classic" or "ultimate").
+ */
 export function selectGameMode(mode) {
     gameState.gameMode = mode;
     render();
 }
 
 
+/**
+ * Sets the selected match type and re-renders the setup screen.
+ *
+ * @param {string} type - Match type ("singleplayer", "local" or "online").
+ */
 export function selectMatchType(type) {
     gameState.matchType = type;
     render();
 }
 
 
+/**
+ * Sets the AI difficulty and re-renders the setup screen.
+ *
+ * @param {string} difficulty - Difficulty level ("easy", "medium" or "hard").
+ */
 export function selectDifficulty(difficulty) {
     gameState.difficulty = difficulty;
     render();
 }
 
 
+/**
+ * Returns whether the game can be started with the current setup selection.
+ *
+ * @returns {boolean}
+ */
 export function canStartGame() {
     return Boolean(gameState.gameMode && gameState.matchType);
 }
@@ -54,6 +74,12 @@ export function goBackToSetup() {
 }
 
 
+/**
+ * Handles a classic board cell click.
+ * Ignores clicks on filled cells, during AI turns, or after game over.
+ *
+ * @param {number} index - Cell index (0–8).
+ */
 export function handleCellClick(index) {
     if (gameState.gameOver) return;
     if (gameState.fields[index] !== null) return;
@@ -68,6 +94,13 @@ export function handleCellClick(index) {
 }
 
 
+/**
+ * Handles an Ultimate board cell click.
+ * Ignores clicks on invalid boards, filled cells, during AI turns, or after game over.
+ *
+ * @param {number} boardIndex - Index of the mini-board (0–8).
+ * @param {number} cellIndex - Index of the cell within that board (0–8).
+ */
 export function handleUltimateCellClick(boardIndex, cellIndex) {
     if (gameState.gameOver) return;
     if (isAiTurn()) return;
@@ -90,6 +123,12 @@ export function restartGame() {
 }
 
 
+/**
+ * Updates a player's name from the setup input field.
+ *
+ * @param {string} playerId - Input data-player value ("player-one" or "player-two").
+ * @param {string} value - Raw input value.
+ */
 export function updatePlayerName(playerId, value) {
     const index = playerId === "player-one" ? 0 : 1;
     gameState.players[index].name = sanitizePlayerName(value);
@@ -104,6 +143,12 @@ export function resetPlayerState() {
 }
 
 
+/**
+ * Starts the starter selection animation.
+ * Randomly picks a starter if no player is provided.
+ *
+ * @param {string|null} [player=null] - Symbol of the player to start ("cross" or "circle"), or null for random.
+ */
 export function chooseStarter(player = null) {
     appState.starterSelection.visible = true;
     const starter = player ?? (Math.random() > 0.5 ? "cross" : "circle");

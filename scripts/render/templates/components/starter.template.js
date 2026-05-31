@@ -2,6 +2,12 @@ import { renderSymbol } from "./symbol.template.js";
 import { appState, gameState } from "../../../state.js";
 import { translate } from "../../../i18n/translate.js";
 
+/**
+ * Returns the starter selection overlay template.
+ * Returns an empty string if the starter selection is not visible.
+ *
+ * @returns {string}
+ */
 export function getStarterTemplate() {
     if (!appState.starterSelection.visible) {
         return "";

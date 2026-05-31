@@ -4,6 +4,11 @@ import { renderSymbol } from "./components/symbol.template.js";
 import { getStarterTemplate } from "./components/starter.template.js";
 
 
+/**
+ * Returns the game screen template.
+ *
+ * @returns {string}
+ */
 export function getGameTemplate() {
     return `
         <section class="game-screen">

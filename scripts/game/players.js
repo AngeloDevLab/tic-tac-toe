@@ -30,6 +30,13 @@ export function createPlayerName(value, fallback) {
 }
 
 
+/**
+ * Sanitizes a player name without applying a fallback.
+ *
+ * @param {string} value - Raw player name input.
+ *
+ * @returns {string} Sanitized player name.
+ */
 export function sanitizePlayerName(value) {
     return sanitizeName(value);
 }

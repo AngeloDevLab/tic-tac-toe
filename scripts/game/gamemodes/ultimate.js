@@ -2,6 +2,9 @@ import { gameState } from "../../state.js";
 import { winningCombinations } from "../winConditions.js";
 
 
+/**
+ * Initializes the Ultimate Tic Tac Toe board state.
+ */
 export function initUltimateState() {
     gameState.ultimateBoards = Array(9).fill(null).map(() => Array(9).fill(null));
     gameState.ultimateBoardWinners = Array(9).fill(null);
@@ -9,6 +12,14 @@ export function initUltimateState() {
 }
 
 
+/**
+ * Returns whether the given mini-board can be played on.
+ * A board is unplayable if it is already won or not the forced target.
+ *
+ * @param {number} boardIndex - Index of the mini-board (0–8).
+ *
+ * @returns {boolean}
+ */
 export function isUltimateBoardPlayable(boardIndex) {
     if (gameState.ultimateBoardWinners[boardIndex] !== null) return false;
     if (gameState.activeBoardIndex === null) return true;
@@ -16,6 +27,13 @@ export function isUltimateBoardPlayable(boardIndex) {
 }
 
 
+/**
+ * Places the current player's move on the given mini-board and cell,
+ * checks for mini-board and global winners, then advances the game state.
+ *
+ * @param {number} boardIndex - Index of the mini-board (0–8).
+ * @param {number} cellIndex - Index of the cell within that board (0–8).
+ */
 export function placeUltimateMove(boardIndex, cellIndex) {
     gameState.ultimateBoards[boardIndex][cellIndex] = gameState.currentPlayer;
 

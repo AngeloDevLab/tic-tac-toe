@@ -2,6 +2,12 @@ import { gameState } from "../../state.js";
 import { winningCombinations } from "../winConditions.js";
 
 
+/**
+ * Returns the AI's chosen move for the Ultimate board.
+ * Returns null if no move is available.
+ *
+ * @returns {{boardIndex: number, cellIndex: number}|null}
+ */
 export function getUltimateAiMove() {
     if (gameState.difficulty === "medium") return getMediumAiMove();
     if (gameState.difficulty === "hard") return getHardAiMove();
@@ -81,6 +87,18 @@ function getHardAiMove() {
 }
 
 
+/**
+ * Minimax with alpha-beta pruning for the Ultimate board.
+ * AI (circle) maximizes, opponent (cross) minimizes.
+ *
+ * @param {object} state - Simulated board state.
+ * @param {number} depth - Remaining search depth.
+ * @param {number} alpha - Best score the maximizer can guarantee.
+ * @param {number} beta - Best score the minimizer can guarantee.
+ * @param {boolean} isMaximizing - True if it is the AI's turn.
+ *
+ * @returns {number} Score of the board position.
+ */
 function minimax(state, depth, alpha, beta, isMaximizing) {
     const winner = getGlobalWinner(state);
     if (winner === "circle") return 1000 + depth;
@@ -170,6 +188,14 @@ function getGlobalWinner(state) {
 }
 
 
+/**
+ * Heuristic evaluation of a board state.
+ * Scores global board lines weighted higher than individual cell lines.
+ *
+ * @param {object} state - Simulated board state.
+ *
+ * @returns {number} Positive scores favor the AI, negative favor the opponent.
+ */
 function evaluate(state) {
     let score = 0;
 
@@ -188,6 +214,14 @@ function evaluate(state) {
 }
 
 
+/**
+ * Scores a single line of three cells for the heuristic evaluation.
+ *
+ * @param {Array<string|null>} cells - Three cell values.
+ * @param {number} weight - Multiplier for this line's importance.
+ *
+ * @returns {number} Score contribution of this line.
+ */
 function scoreLine(cells, weight) {
     const ai = cells.filter(c => c === "circle").length;
     const opp = cells.filter(c => c === "cross").length;
