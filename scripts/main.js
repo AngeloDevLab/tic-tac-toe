@@ -1,11 +1,6 @@
 import { initApp } from "./render/render.js";
 import { loadLanguage } from "./i18n/language.js";
 
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
-        loadLanguage();
-        initApp();
-    }
-);
+loadLanguage();
+initApp();
 
